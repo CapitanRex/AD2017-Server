@@ -1,32 +1,46 @@
 package modelo;
 
-import dao.EmpleadoDao;
-import entities.EmpleadoEntity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import dao.EmpleadoDao;
+
+@Entity
+@Table(name="empleado")
 public class Empleado {
 	//ATRIBUTO.
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALLINT")
+	private Integer id;
+	@Column(name="nombre", columnDefinition="VARCHAR")
 	private String nombre;
-	private int documento;
+	@Column(name="documento", columnDefinition="INT")
+	private Integer documento;
 	public Empleado() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Empleado(String nombre, int documento) {
+	public Empleado(String nombre, Integer documento) {
 		super();
 		this.nombre = nombre;
 		this.documento = documento;
 	}
-	public Empleado(int id, String nombre, int documento) {
+	public Empleado(Integer id, String nombre, Integer documento) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.documento = documento;
 	}
-	public int getId() {
+	
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -35,18 +49,15 @@ public class Empleado {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getDocumento() {
+	public Integer getDocumento() {
 		return documento;
 	}
-	public void setDocumento(int documento) {
+	public void setDocumento(Integer documento) {
 		this.documento = documento;
 	}
 	
-	//ENTITY
-	public EmpleadoEntity toEntity() {
-		return new EmpleadoEntity(id, nombre, documento);
-	}
+	//PERSISTIR.
 	public void persistir(Empleado empleado){
-		EmpleadoDao.getInstancia().InsertEmpleado(empleado.toEntity());
+		EmpleadoDao.getInstancia().InsertEmpleado(empleado);
 	}
 }

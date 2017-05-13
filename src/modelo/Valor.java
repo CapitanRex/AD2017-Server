@@ -1,12 +1,31 @@
 package modelo;
 
-import entities.ValorEntity;
+import java.io.Serializable;
 
-public class Valor {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="valor")
+public class Valor implements Serializable{
+	//SERIALIZABLE.
+	private static final long serialVersionUID = 1L;
+	
 	//ATRIBUTOS.
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALLINT")
+	private Integer id;
+	@Column(name="descripcion", columnDefinition="VARCHAR")
 	private String descripcion;
+	@Column(name="monto", columnDefinition="FLOAT")
 	private float monto;
+	@Column (name = "cuentaCorrienteId", columnDefinition="SMALLINT")
+	private Integer cuenta;
 	
 	//CONSTRUCTOR VACIO.
 	public Valor() {
@@ -14,14 +33,15 @@ public class Valor {
 	}
 	
 	//CONSTRUCTOR.
-	public Valor(String descripcion, float monto) {
+	public Valor(String descripcion, float monto, Integer cuenta) {
 		super();
 		this.descripcion = descripcion;
 		this.monto = monto;
+		this.cuenta = cuenta;
 	}
 	
 	//CONTRUCTOR CON ID.
-	public Valor(int id, String descripcion, float monto) {
+	public Valor(Integer id, String descripcion, float monto) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -29,10 +49,10 @@ public class Valor {
 	}
 
 	//GETTER & SETTER.
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getDescripcion() {
@@ -46,12 +66,5 @@ public class Valor {
 	}
 	public void setMonto(float monto) {
 		this.monto = monto;
-	}
-
-	//VIEW.
-	
-	//ENTITY.
-	public ValorEntity toEntity() {
-		return new ValorEntity(id, descripcion, monto);
 	}
 }

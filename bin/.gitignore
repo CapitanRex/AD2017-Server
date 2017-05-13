@@ -1,2 +1,5 @@
 /hibernate.properties
-/.gitignore
+/hibernate/
+/modelo/
+/servidor/
+

@@ -3,8 +3,8 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.EmpleadoEntity;
 import hibernate.HibernateUtil;
+import modelo.Empleado;
 
 public class EmpleadoDao {
 	//ATRIBUTOS.
@@ -21,7 +21,7 @@ public class EmpleadoDao {
 	}
 
 	//INSERTAR EN DB.
-	public void InsertEmpleado(EmpleadoEntity empleado){
+	public void InsertEmpleado(Empleado empleado){
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(empleado);
