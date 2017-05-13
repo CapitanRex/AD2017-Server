@@ -1,25 +1,53 @@
 package modelo;
 
-import dao.ClienteDao;
-import entities.ClienteEntity;
+import java.io.Serializable;
 
-public class Cliente {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import dao.ClienteDao;
+
+@Entity
+@Table(name="cliente")
+public class Cliente implements Serializable{
+	//SERIALIZABLE.
+	private static final long serialVersionUID = 1L;
+	
 	//ATRIBUTOS.
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALLINT")
+	private Integer id;
+	@Column(name="cuit", columnDefinition="CHAR")
 	private String cuit;
+	@Column(name="razonSocial", columnDefinition="VARCHAR")
 	private String razonSocial;
+	@Column(name="direccion", columnDefinition="VARCHAR")
 	private String direccion;
-	private int estado;
+	@Column(name="estadoId", columnDefinition="SMALLINT")
+	private Integer estado;
+	@OneToOne (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="cuentaCorrienteId", columnDefinition="SMALLINT")
 	private CuentaCorriente cuenta;
+	@OneToOne (cascade=CascadeType.ALL)
+	@JoinColumn(name="condicionPagoId", columnDefinition="SMALLINT")
 	private CondicionPago condicion;
 	
 	//CONSTRUCTOR VACIO.
-	public Cliente () {
+	public Cliente() {
 		super();
 	}
 
 	//CONSTRUCTOR.
-	public Cliente (String cuit, String razonSocial, String direccion) {
+	public Cliente(String cuit, String razonSocial, String direccion) {
 		super();
 		this.cuit = cuit;
 		this.razonSocial = razonSocial;
@@ -30,7 +58,7 @@ public class Cliente {
 	}
 
 	//CONSTRUCTOR CON ID.
-	public Cliente (int id, String cuit, String razonSocial, String direccion, int estado, CuentaCorriente cuenta, CondicionPago condicion) {
+	public Cliente(Integer id, String cuit, String razonSocial, String direccion, Integer estado, CuentaCorriente cuenta, CondicionPago condicion) {
 		super();
 		this.id = id;
 		this.cuit = cuit;
@@ -42,10 +70,10 @@ public class Cliente {
 	}
 
 	//GETTER & SETTER.
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getCuit() {
@@ -66,10 +94,10 @@ public class Cliente {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public int getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 	public CuentaCorriente getCuenta() {
@@ -83,30 +111,20 @@ public class Cliente {
 	}
 	public void setCondicion(CondicionPago condicion) {
 		this.condicion = condicion;
-	}
-
-	//VIEW.
-	//public ClienteView toView() {
-		//return new ClienteView(id, cuit, razonSocial, direccion, estado, cuenta, condicion);
-	//}
-	
-	//TO ENTITY.
-	public ClienteEntity toEntity() {
-		return new ClienteEntity(cuit, razonSocial, direccion, estado, cuenta.toEntity(), condicion.toEntity());
-	}
+	}	
 	
 	//PERSISTIR.
 	public void persist(Cliente cliente) {
-		ClienteDao.getInstancia().InsertCliente(cliente.toEntity());
+		ClienteDao.getInstancia().InsertCliente(cliente);
 	}
 	
 	//UPDATE
 	public void update(Cliente cliente) {
-		ClienteDao.getInstancia().UpdateCliente(cliente.toEntity());
+		ClienteDao.getInstancia().UpdateCliente(cliente);
 	}
 	
 	//LOAD
-	public ClienteEntity load(int idCliente) {
+	public Cliente load(int idCliente) {
 		return ClienteDao.getInstancia().LoadCliente(idCliente);
 	}
 }

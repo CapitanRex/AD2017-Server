@@ -3,11 +3,11 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import entities.ClienteEntity;
-import entities.CondicionPagoEntity;
-import entities.CuentaCorrienteEntity;
-import entities.EmpleadoEntity;
-import entities.ValorEntity;
+import modelo.Cliente;
+import modelo.CondicionPago;
+import modelo.CuentaCorriente;
+import modelo.Empleado;
+import modelo.Valor;
  
 public class HibernateUtil {
 	
@@ -25,12 +25,12 @@ public class HibernateUtil {
         try {
         	
         	Configuration config = new Configuration();
-        	config.addAnnotatedClass(ClienteEntity.class);
-        	config.addAnnotatedClass(CuentaCorrienteEntity.class);
-        	config.addAnnotatedClass(CondicionPagoEntity.class);
-        	config.addAnnotatedClass(ValorEntity.class);
+        	config.addAnnotatedClass(Cliente.class);
+        	config.addAnnotatedClass(CuentaCorriente.class);
+        	config.addAnnotatedClass(CondicionPago.class);
+        	config.addAnnotatedClass(Valor.class);
 
-        	config.addAnnotatedClass(EmpleadoEntity.class);
+        	config.addAnnotatedClass(Empleado.class);
         	
 
         	sessionFactory = config.buildSessionFactory();
