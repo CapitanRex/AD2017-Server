@@ -3,6 +3,8 @@ package modelo;
 import dao.ClienteDao;
 import entities.ClienteEntity;
 
+//Puto!
+
 public class Cliente {
 	//ATRIBUTOS.
 	private int id;
