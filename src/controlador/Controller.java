@@ -54,7 +54,7 @@ public class Controller extends UnicastRemoteObject implements TDAInterfazContro
 		
 		ClienteDao.getInstancia().UpdateCliente(c);
 		
-	
+	//fslnsvnsjvnsvmlsdv
 	}
 	
 	public void altaEmpleado(String desc, int doc) {
