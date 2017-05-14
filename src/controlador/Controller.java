@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import dao.ClienteDao;
-import entities.ClienteEntity;
 import interfaz.TDAInterfazControlador;
 import modelo.Cliente;
 import modelo.Empleado;
@@ -43,18 +42,20 @@ public class Controller extends UnicastRemoteObject implements TDAInterfazContro
 	
 	//ALTA DE cliente.
 	public void altaCliente(String cuit, String razon, String direccion)throws RemoteException{
-		Cliente nueva = new Cliente(cuit, razon, direccion);
-		nueva.persist(nueva);
+		//Cliente nueva = new Cliente(cuit, razon, direccion);
+		//Valor v = new Valor("priemra cuota", 4500);
+		//nueva.getCuenta().getValores().add(v);
+		//nueva.persist(nueva);
 		
-		ClienteEntity c = ClienteDao.getInstancia().LoadCliente(43);
-		System.out.println(c.getRazonSocial() + c.getCuenta().getLimite() +"   "+ c.getCuenta().getValores().size());
-		Valor v = new Valor("priemra cuota", 4500);
-		c.getCuenta().getValores().add(v.toEntity());
+		Cliente c = ClienteDao.getInstancia().LoadCliente(1);
+		//System.out.println(c.getCuenta().getLimite());
+		System.out.println(c.getCuenta().getId());
+		Valor v = new Valor("priemra cuota", 4500, c.getCuenta().getId());
+		c.getCuenta().getValores().add(v);
 		System.out.println(c.getCuenta().getValores().size());
 		
 		ClienteDao.getInstancia().UpdateCliente(c);
 		
-	//fslnsvnsjvnsvmlsdv
 	}
 	
 	public void altaEmpleado(String desc, int doc) {

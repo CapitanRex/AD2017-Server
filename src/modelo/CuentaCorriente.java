@@ -1,44 +1,65 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
-import entities.CuentaCorrienteEntity;
-import entities.ValorEntity;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-public class CuentaCorriente {
+@Entity
+@Table(name="cuentaCorriente")
+public class CuentaCorriente implements Serializable{
+	//SERIALIZABLE.
+	private static final long serialVersionUID = 1L;
+	
 	//ATRIBUTOS.
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALLINT")
+	private Integer id;
+	@Column(name="credito", columnDefinition="FLOAT")
 	private float credito;
+	@Column(name="limite", columnDefinition="FLOAT")
 	private float limite;
-	private Set<Valor> valores;
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn (name = "cuentaCorrienteId")
+	private Set<Valor> valores = new HashSet<Valor>();
 	
 	//CONSTRUCTOR VACIO.
 	public CuentaCorriente() {
 		super();
 	}
-	
+
 	//CONSTRUCTOR.
 	public CuentaCorriente(float credito, float limite) {
+		super();
 		this.credito = credito;
 		this.limite = limite;
-		this.valores = new HashSet<Valor>();
 	}
 
 	//CONSTRUCTOR CON ID.
-	public CuentaCorriente(int id, float credito, float limite, Set<Valor> valores) {
+	public CuentaCorriente(Integer id, float credito, float limite, Set<Valor> valores) {
+		super();
 		this.id = id;
 		this.credito = credito;
 		this.limite = limite;
 		this.valores = valores;
 	}
 	
-	//GETER & SETTER.
-	public int getId() {
+	//GETTER & SETTER.
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public float getCredito() {
@@ -59,16 +80,34 @@ public class CuentaCorriente {
 	public void setValores(Set<Valor> valores) {
 		this.valores = valores;
 	}
-	
-	//VIEW.
-	//public CuentaCorrienteView toView
-	
-	//ENTITY.
-	public CuentaCorrienteEntity toEntity() {
-		Set<ValorEntity> valoresEntity = new HashSet<ValorEntity>();
-		Iterator<Valor> iterator = valores.iterator();
-		while(iterator.hasNext())
-			valoresEntity.add(iterator.next().toEntity());
-		return new CuentaCorrienteEntity (credito, limite);
+
+	//HASHCODE.
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
+
+	//EQUALS.
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CuentaCorriente other = (CuentaCorriente) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}	
+	
+	
 }
+
