@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,7 +21,6 @@ public class ItemRemito implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//ATRIBUTOS.
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="SMALINT")
@@ -36,6 +36,9 @@ public class ItemRemito implements Serializable {
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="colorId", columnDefinition="SMALLINT")
     private Color color;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="remitoId", columnDefinition="SMALLINT")
+	private Remito remito;
     
 	//CONSTRUCTOR VACIO.
     public ItemRemito() {
@@ -43,22 +46,24 @@ public class ItemRemito implements Serializable {
 	}
 
     //CONSTRUCTOR.
-	public ItemRemito(Integer cantidad, Prenda prenda, Talle talle, Color color) {
+	public ItemRemito(Integer cantidad, Prenda prenda, Talle talle, Color color, Remito remito) {
 		super();
 		this.cantidad = cantidad;
 		this.prenda = prenda;
 		this.talle = talle;
 		this.color = color;
+		this.remito = remito;
 	}
 	
 	//CONSTRUCTOR CON ID.
-	public ItemRemito(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color) {
+	public ItemRemito(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color, Remito remito) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
 		this.prenda = prenda;
 		this.talle = talle;
 		this.color = color;
+		this.remito = remito;
 	}
 
 	//GETTERS & SETTERS.

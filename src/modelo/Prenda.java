@@ -25,7 +25,7 @@ public class Prenda implements Serializable {
 	@Column(name="descripcion", columnDefinition="VARCHAR")
     private String descripcion;
 	
-	//????????
+	//???????? many to many
     private Set<Color> colores;
     private Set<Talle> talles;
     private Set<LotePrenda> lotes;
@@ -38,7 +38,7 @@ public class Prenda implements Serializable {
     //CONSTRUCTOR.
     public Prenda() {
     }
-    
+      
     //GETTERS & SETTERS.
     public Integer getId() {
 		return id;

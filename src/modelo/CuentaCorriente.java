@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class CuentaCorriente implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
-	
+	 
 	//ATRIBUTOS.
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

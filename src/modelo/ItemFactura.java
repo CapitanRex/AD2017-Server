@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -37,6 +38,9 @@ public class ItemFactura implements Serializable {
     private Color color;
 	@Column(name="precio", columnDefinition="FLOAT")
     private Float precio;
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="facturaId", columnDefinition="SMALLINT")
+    private Factura factura;
     
 	//CONSTRUCTOR VACIO.
     public ItemFactura() {
@@ -44,17 +48,18 @@ public class ItemFactura implements Serializable {
 	}
 
     //CONSTRUCTOR.
-	public ItemFactura(Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio) {
+	public ItemFactura(Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Factura factura) {
 		super();
 		this.cantidad = cantidad;
 		this.prenda = prenda;
 		this.talle = talle;
 		this.color = color;
 		this.precio = precio;
+		this.factura = factura;
 	}
 	
 	//CONSTRUCTOR CON ID.
-	public ItemFactura(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio) {
+	public ItemFactura(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Factura factura) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
@@ -62,6 +67,7 @@ public class ItemFactura implements Serializable {
 		this.talle = talle;
 		this.color = color;
 		this.precio = precio;
+		this.factura = factura;
 	}
 
 	//GETTERS & SETTERS.

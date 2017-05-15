@@ -27,7 +27,7 @@ public class Talle implements Serializable {
     public Talle() {
 		super();
 	}
-    
+
     //CONSTRUCTOR.
 	public Talle(String nombre) {
 		super();

@@ -27,7 +27,7 @@ public class Color implements Serializable{
     public Color() {
 		super();
 	}
-    
+     
     //CONSTRUCTOR.
 	public Color(String nombre) {
 		super();

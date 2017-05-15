@@ -2,11 +2,15 @@ package modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +18,7 @@ import javax.persistence.Table;
 public class Valor implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
-	
+	 
 	//ATRIBUTOS.
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,8 +28,9 @@ public class Valor implements Serializable{
 	private String descripcion;
 	@Column(name="monto", columnDefinition="FLOAT")
 	private float monto;
-	@Column (name = "cuentaCorrienteId", columnDefinition="SMALLINT")
-	private Integer cuenta;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn (name = "cuentaCorrienteId", columnDefinition="SMALLINT")
+	private CuentaCorriente cuenta;
 	
 	//CONSTRUCTOR VACIO.
 	public Valor() {
@@ -33,7 +38,7 @@ public class Valor implements Serializable{
 	}
 	
 	//CONSTRUCTOR.
-	public Valor(String descripcion, float monto, Integer cuenta) {
+	public Valor(String descripcion, float monto, CuentaCorriente cuenta) {
 		super();
 		this.descripcion = descripcion;
 		this.monto = monto;

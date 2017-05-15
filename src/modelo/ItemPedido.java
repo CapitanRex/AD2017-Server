@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,9 +37,9 @@ public class ItemPedido implements Serializable {
     private Color color;
 	@Column(name="precio", columnDefinition="FLOAT")
     private Float precio;
-	
-	@Column(name="pedidoId", columnDefinition="SMALLINT")
-    private Integer pedidoId;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
+    private Pedido pedido;
 	
 	//CONSTRUCTOR VACIO.
     public ItemPedido() {
@@ -46,18 +47,18 @@ public class ItemPedido implements Serializable {
 	}
 
     //CONSTRUCTOR.
-	public ItemPedido(Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Integer pedidoId) {
+	public ItemPedido(Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Pedido pedido) {
 		super();
 		this.cantidad = cantidad;
 		this.prenda = prenda;
 		this.talle = talle;
 		this.color = color;
 		this.precio = precio;
-		this.pedidoId = pedidoId;
+		this.pedido = pedido;
 	}
 	
 	//CONSTRUCTOR CON ID.
-	public ItemPedido(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio) {
+	public ItemPedido(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Pedido pedido) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
@@ -65,6 +66,7 @@ public class ItemPedido implements Serializable {
 		this.talle = talle;
 		this.color = color;
 		this.precio = precio;
+		this.pedido = pedido;
 	}
     
 	//GETTERS & SETTERS.

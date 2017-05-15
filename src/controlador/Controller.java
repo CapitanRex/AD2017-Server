@@ -43,19 +43,19 @@ public class Controller extends UnicastRemoteObject implements TDAInterfazContro
 	
 	//ALTA DE cliente.
 	public void altaCliente(String cuit, String razon, String direccion)throws RemoteException{
-		//Cliente nueva = new Cliente(cuit, razon, direccion);
-		//Valor v = new Valor("priemra cuota", 4500);
-		//nueva.getCuenta().getValores().add(v);
-		//nueva.persist(nueva);
+		Cliente nueva = new Cliente(cuit, razon, direccion);
+		Valor v = new Valor("priemra cuota", 4500, nueva.getCuenta());
+		nueva.getCuenta().getValores().add(v);
+		nueva.persist(nueva);
 		
-		Cliente c = ClienteDao.getInstancia().LoadCliente(1);
+		//Cliente c = ClienteDao.getInstancia().LoadCliente(2);
 		//System.out.println(c.getCuenta().getLimite());
-		System.out.println(c.getCuenta().getId());
-		Valor v = new Valor("priemra cuota", 4500, c.getCuenta().getId());
-		c.getCuenta().getValores().add(v);
-		System.out.println(c.getCuenta().getValores().size());
+		//System.out.println(c.getCuenta().getId());
+		//Valor v = new Valor("segunda cuota", 4500, c.getCuenta().getId());
+		//c.getCuenta().getValores().add(v);
+		//System.out.println(c.getCuenta().getValores().size());
 		
-		ClienteDao.getInstancia().UpdateCliente(c);
+		//ClienteDao.getInstancia().UpdateCliente(c);
 		
 	}
 	

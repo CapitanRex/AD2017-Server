@@ -23,7 +23,7 @@ public class AreaVentas {
   	
   	//INSTANCIA.
   	private static AreaVentas instancia;
-  	
+  
   	//SINGLETON.
   	public static AreaVentas getInstance() throws RemoteException{
   		if(instancia==null)
