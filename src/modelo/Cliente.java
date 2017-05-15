@@ -20,7 +20,7 @@ import dao.ClienteDao;
 public class Cliente implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
-	
+	 
 	//ATRIBUTOS.
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
