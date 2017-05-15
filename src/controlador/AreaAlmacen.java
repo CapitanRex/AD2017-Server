@@ -1,6 +1,15 @@
-package modelo;
+package controlador;
 
 import java.util.Set;
+
+import modelo.ArticuloAlmacenable;
+import modelo.Empleado;
+import modelo.LotePrenda;
+import modelo.Movimiento;
+import modelo.OrdenCompra;
+import modelo.OrdenProduccion;
+import modelo.Pedido;
+import modelo.Slot;
 
 public class AreaAlmacen {
 

@@ -1,6 +1,10 @@
-package modelo;
+package controlador;
 
 import java.util.Set;
+
+import modelo.Articulo;
+import modelo.OrdenProduccion;
+import modelo.SectorProduccion;
 
 public class AreaProduccion {
 
