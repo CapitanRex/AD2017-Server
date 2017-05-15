@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.Set;
 
+import controlador.AreaVentas;
+
 public class Sucursal {
 
     public Sucursal() {

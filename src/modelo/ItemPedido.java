@@ -36,20 +36,24 @@ public class ItemPedido implements Serializable {
     private Color color;
 	@Column(name="precio", columnDefinition="FLOAT")
     private Float precio;
-    
+	
+	@Column(name="pedidoId", columnDefinition="SMALLINT")
+    private Integer pedidoId;
+	
 	//CONSTRUCTOR VACIO.
     public ItemPedido() {
 		super();
 	}
 
     //CONSTRUCTOR.
-	public ItemPedido(Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio) {
+	public ItemPedido(Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Integer pedidoId) {
 		super();
 		this.cantidad = cantidad;
 		this.prenda = prenda;
 		this.talle = talle;
 		this.color = color;
 		this.precio = precio;
+		this.pedidoId = pedidoId;
 	}
 	
 	//CONSTRUCTOR CON ID.

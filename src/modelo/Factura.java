@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -41,7 +42,7 @@ public class Factura implements Serializable{
     private Cliente cliente;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="facturaId", columnDefinition="SMALLINT")
-    private Set<ItemFactura> itemFactura;
+    private Set<ItemFactura> itemFactura = new HashSet<ItemFactura>();
 
     //CONSTRUCTOR VACIO.
     public Factura() {

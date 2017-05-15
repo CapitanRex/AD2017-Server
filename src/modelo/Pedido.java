@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,12 +36,12 @@ public class Pedido implements Serializable {
     private Date fechaEntrega;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
-    private Set<ItemPedido> itemPedido;
+    private Set<ItemPedido> itemPedido = new HashSet<ItemPedido>();
 	@Column(name="estadoId", columnDefinition="SMALLINT")
     private String estado;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
-    private Set<ReservaPedido> reservas;
+    private Set<ReservaPedido> reservas = new HashSet<ReservaPedido>();
 
 	//CONSTRUCTOR VACIO.
     public Pedido() {
@@ -49,15 +50,13 @@ public class Pedido implements Serializable {
 	}
 
     //CONSTRUCTOR.
-	public Pedido(Cliente cliente, Date fecha, Date fechaEntrega, Set<ItemPedido> itemPedido, String estado,
-			Set<ReservaPedido> reservas) {
+	public Pedido(Cliente cliente, Date fechaEntrega /*, Set<ReservaPedido> reservas*/) {
 		super();
 		this.cliente = cliente;
-		this.fecha = fecha;
+		this.fecha = new Date();
 		this.fechaEntrega = fechaEntrega;
-		this.itemPedido = itemPedido;
-		this.estado = estado;
-		this.reservas = reservas;
+		this.estado = "PENDIENTE DE APROBACION";
+		//this.reservas = reservas;
 	}
 
 	//CONSTRUCTOR CON ID.

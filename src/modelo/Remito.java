@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class Remito implements Serializable {
     private String estado;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="remitoId", columnDefinition="SMALLINT")
-    private Set<ItemRemito> itemsRemito;
+    private Set<ItemRemito> itemsRemito = new HashSet<ItemRemito>();
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
     private Pedido pedido;
@@ -43,7 +44,6 @@ public class Remito implements Serializable {
 	//CONSTRUCTOR VACIO.
     public Remito() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
     //CONSTRUCTOR.
