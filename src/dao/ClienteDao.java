@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 
 import hibernate.HibernateUtil;
 import modelo.Cliente;
-import modelo.CuentaCorriente;
 
 public class ClienteDao {
 	//ATRIBUTOS.
@@ -46,15 +45,6 @@ public class ClienteDao {
 		session.flush();
 	    session.getTransaction().commit();
 	    session.close();
-	}
-	
-	//INSERTAR EN DB.
-	public void UpdateCuentaCrriente(CuentaCorriente cuenta) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(cuenta);
-		session.flush();
-	    session.getTransaction().commit();
 	}
 }
 

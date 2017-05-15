@@ -1,43 +1,94 @@
 package modelo;
 
-public class ItemRemito {
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="itemRemito")
+public class ItemRemito implements Serializable {
+	//SERIALIZABLE.
+	private static final long serialVersionUID = 1L;
 	
-    private Integer cantidad;
-    private Prenda prenda;
+	//ATRIBUTOS.
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALINT")
+	private Integer id;
+	@Column(name="cantidad", columnDefinition="INTEGER")
+	private Integer cantidad;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
+	private Prenda prenda;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="talleId", columnDefinition="SMALLINT")
     private Talle talle;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="colorId", columnDefinition="SMALLINT")
     private Color color;
     
+	//CONSTRUCTOR VACIO.
     public ItemRemito() {
-    }
-
-    public Integer getCantidad() {
-		return cantidad;
+		super();
 	}
 
+    //CONSTRUCTOR.
+	public ItemRemito(Integer cantidad, Prenda prenda, Talle talle, Color color) {
+		super();
+		this.cantidad = cantidad;
+		this.prenda = prenda;
+		this.talle = talle;
+		this.color = color;
+	}
+	
+	//CONSTRUCTOR CON ID.
+	public ItemRemito(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color) {
+		super();
+		this.id = id;
+		this.cantidad = cantidad;
+		this.prenda = prenda;
+		this.talle = talle;
+		this.color = color;
+	}
+
+	//GETTERS & SETTERS.
+    public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Integer getCantidad() {
+		return cantidad;
+	}
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-
 	public Prenda getPrenda() {
 		return prenda;
 	}
-
 	public void setPrenda(Prenda prenda) {
 		this.prenda = prenda;
 	}
-
 	public Talle getTalle() {
 		return talle;
 	}
-
 	public void setTalle(Talle talle) {
 		this.talle = talle;
 	}
-
 	public Color getColor() {
 		return color;
 	}
-
 	public void setColor(Color color) {
 		this.color = color;
 	}
