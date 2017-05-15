@@ -1,7 +1,12 @@
-package modelo;
+package controlador;
 
 import java.sql.Time;
 import java.util.Set;
+
+import modelo.Insumo;
+import modelo.OrdenCompra;
+import modelo.Proveedor;
+import modelo.SolicitudCompra;
 
 public class AreaCompras {
 	

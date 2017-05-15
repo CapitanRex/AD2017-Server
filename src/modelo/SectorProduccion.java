@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.Set;
 
+import controlador.AreaProduccion;
+
 public class SectorProduccion {
 
 

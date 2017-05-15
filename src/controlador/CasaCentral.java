@@ -1,8 +1,13 @@
-package modelo;
+package controlador;
 
 import java.util.Set;
 
-import controlador.AreaVentas;
+import modelo.Empleado;
+import modelo.Factura;
+import modelo.LotePrenda;
+import modelo.Pedido;
+import modelo.Remito;
+import modelo.Sucursal;
 
 public class CasaCentral {
 

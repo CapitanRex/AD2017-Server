@@ -3,12 +3,16 @@ package modelo;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,15 +28,29 @@ public class Prenda implements Serializable {
 	private Integer id;
 	@Column(name="descripcion", columnDefinition="VARCHAR")
     private String descripcion;
-	
-	//???????? many to many
+	//MANY
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
     private Set<Color> colores;
+    //MANY
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
     private Set<Talle> talles;
+    //MANY ?
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<LotePrenda> lotes;
+    @Column(name="estadoPrendaId", columnDefinition="SMALLINT")
     private String estado;
+    @Column(name="porcentajeGanancia", columnDefinition="FLOAT")
     private Float porcentajeGanancia;
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="modeloProduccionId", columnDefinition="SMALLINT")
     private ModeloProduccion modelo;
+    //MANY
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="prendaId", columnDefinition="SMALLINT")
     private Set<Molde> molde;
+    @Column(name="temporada", columnDefinition="VARCHAR")
     private String temporada;
     
     //CONSTRUCTOR.

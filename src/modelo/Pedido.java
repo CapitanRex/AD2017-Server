@@ -46,7 +46,6 @@ public class Pedido implements Serializable {
 	//CONSTRUCTOR VACIO.
     public Pedido() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
     //CONSTRUCTOR.
