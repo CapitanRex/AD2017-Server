@@ -2,14 +2,35 @@ package modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table (name="movimiento")
 public class Movimiento {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALLINT")
     private Integer id;
+	
+	@Column(name="fecha")
+	@Temporal(TemporalType.DATE)
     private Date fecha;
-    private Motivo motivo;
-    private Slot slot;
+    
+    private Motivo motivo;//Relacion uno a uno
+    
+    private Slot slot;//relacion uno a uno
+    
     private ArticuloAlmacenable item; 
 
+    
     public Movimiento() {
     }
 
