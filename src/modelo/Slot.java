@@ -2,28 +2,51 @@ package modelo;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="slot")
 public class Slot {
+    
+    @Id//En la base esta definido como integer, cuando si queremos usar el codigo de la ubicacion deberia ser String
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALLINT")
+    private Integer id;
+    
+    @Embedded
+    private Ubicacion ubicacion;//La definicion de la base esta en la clase embebida Ubicacion
+    @Column(name="estadoSlotId", columnDefinition="SMALLINT")
+    private String estado;
+    @Column(name="cantidad", columnDefinition="SMALLINT")
+    private Integer cantidad;
+    @Column(name="tipoId", columnDefinition="SMALLINT")
+    private String tipo;
+    //Esto es una interface
+    private ArticuloAlmacenable item;
+    
+    //Para las reservas de Stock. Esto no lo encontre la relacion en la Base
+    private Set<Reserva> reservas;
+
+
     public Slot() {
     }
-
-    private Ubicacion id;
-    private String estado;
-    private ArticuloAlmacenable item;
-    private Integer cantidad;
-    private Set<Reserva> reservas;
-    private String tipo;
-
-
+    
     public boolean estaLleno() {
         // TODO implement here
         return false;
     }
 
-    public Ubicacion getId() {
+    public Integer getId() {
 		return id;
 	}
 
-	public void setId(Ubicacion id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
