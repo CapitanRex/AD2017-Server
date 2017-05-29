@@ -2,9 +2,7 @@ package controlador;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Date;
 
-import dao.ClienteDao;
 import interfaz.TDAInterfazControlador;
 import modelo.Cliente;
 import modelo.Empleado;
@@ -64,23 +62,18 @@ public class Controller extends UnicastRemoteObject implements TDAInterfazContro
 		e.persistir(e);
 	}
 	
-	public void altaPedido( Cliente c, Date fecha) throws RemoteException{
+	public int generarPedido(String cuitCliente) throws RemoteException{
 		AreaVentas AV = AreaVentas.getInstance();
-		//ItemPedido IP = new ItemPedido();
-		//AV.generarPedido(c, fechaProbable, items)
+		int idPedido = AV.generarPedido(cuitCliente);
+		return idPedido;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void armarPedido(int cantidad, int idPrenda, int idTalle, int idColor, float precio, int idPedido) throws RemoteException{
+		AreaVentas AV = AreaVentas.getInstance();
+		AV.armarPedido(cantidad, idPrenda, idTalle, idColor, precio, idPedido);
+	}
+
+
+
 	
 }

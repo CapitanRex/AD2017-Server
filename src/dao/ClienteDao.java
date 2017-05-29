@@ -2,6 +2,7 @@ package dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import hibernate.HibernateUtil;
 import modelo.Cliente;
@@ -26,13 +27,26 @@ public class ClienteDao {
 		session.beginTransaction();
 		session.save(cliente);
 	    session.getTransaction().commit();
+	    session.close();
 	}
 	
-	//LOAD EN DB.
-	public Cliente LoadCliente(int idCliente){
+	//LOAD FROM DB - PK.
+	public Cliente LoadClienteId(int idCliente){
 		Session session = sessionFactory.openSession();
 		Cliente cliente = new Cliente();
 		session.load(cliente,  idCliente);
+	    session.close();
+		return cliente;
+	}
+	
+	//LOAD FROM DB - CUIT.
+	public Cliente LoadClienteCuit(String cuitCliente){
+		Session session = sessionFactory.openSession();
+		Cliente cliente = new Cliente();
+		Query q = session.createQuery("FROM cliente WHERE cuit =" + cuitCliente);
+		q.setFirstResult(0);
+		q.setMaxResults(1);
+		cliente = (Cliente) q.uniqueResult();
 	    session.close();
 		return cliente;
 	}

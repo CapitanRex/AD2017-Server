@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import dao.PedidoDao;
 @Entity
 @Table(name="pedido")
 public class Pedido implements Serializable {
@@ -28,20 +30,17 @@ public class Pedido implements Serializable {
 	@Column(name="id", columnDefinition="SMALLINT")
 	private Integer id;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="clienteId")
+	@JoinColumn(name="clienteId", columnDefinition="SMALLINT")
     private Cliente cliente;
 	@Column(name="fecha", columnDefinition="DATE")
     private Date fecha;
 	@Column(name="fechaEntrega", columnDefinition="DATE")
     private Date fechaEntrega;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
+	@JoinColumn(name="pedidoId", columnDefinition = "SMALLINT")
     private Set<ItemPedido> itemPedido = new HashSet<ItemPedido>();
 	@Column(name="estadoId", columnDefinition="SMALLINT")
     private String estado;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
-    private Set<ReservaPedido> reservas = new HashSet<ReservaPedido>();
 
 	//CONSTRUCTOR VACIO.
     public Pedido() {
@@ -49,18 +48,16 @@ public class Pedido implements Serializable {
 	}
 
     //CONSTRUCTOR.
-	public Pedido(Cliente cliente, Date fechaEntrega /*, Set<ReservaPedido> reservas*/) {
+	public Pedido(Cliente cliente) {
 		super();
 		this.cliente = cliente;
 		this.fecha = new Date();
-		this.fechaEntrega = fechaEntrega;
+		this.fechaEntrega = calcularFechaProbale(fecha);
 		this.estado = "PENDIENTE DE APROBACION";
-		//this.reservas = reservas;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public Pedido(Integer id, Cliente cliente, Date fecha, Date fechaEntrega, Set<ItemPedido> itemPedido, String estado,
-			Set<ReservaPedido> reservas) {
+	public Pedido(Integer id, Cliente cliente, Date fecha, Date fechaEntrega, String estado, Set<ItemPedido> itemPedido) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
@@ -68,7 +65,6 @@ public class Pedido implements Serializable {
 		this.fechaEntrega = fechaEntrega;
 		this.itemPedido = itemPedido;
 		this.estado = estado;
-		this.reservas = reservas;
 	}
 
 	//GETTERS & SETTERS.
@@ -108,16 +104,10 @@ public class Pedido implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Set<ReservaPedido> getReservas() {
-		return reservas;
-	}
-	public void setReservas(Set<ReservaPedido> reservas) {
-		this.reservas = reservas;
-	}
 	
 	//PERSISTIR.
-	public void persist(Pedido pedido){
-		
+	public void persist(){
+		PedidoDao.getInstancia().InsertPedido(this);
 	}
 	
 	//UPDATE.
@@ -131,6 +121,11 @@ public class Pedido implements Serializable {
 	}
 	
 	//METODOS DE NEGOCIO.
+	
+	private Date calcularFechaProbale(Date fecha) {
+		return fecha;
+	}
+	
 	public void agregarItem() {
         // TODO implement here
     }
