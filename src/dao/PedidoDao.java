@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import hibernate.HibernateUtil;
-import modelo.Cliente;
+import modelo.Pedido;
 
 public class PedidoDao {
 	//ATRIBUTOS.
@@ -21,11 +21,11 @@ public class PedidoDao {
 	}
 
 	//INSERTAR EN DB.
-	public void InsertPedido(Cliente pedido) {
+	public void InsertPedido(Pedido pedido) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(pedido);
 	    session.getTransaction().commit();
+	    session.close();
 	}
-
 }

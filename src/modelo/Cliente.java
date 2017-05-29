@@ -124,7 +124,11 @@ public class Cliente implements Serializable{
 	}
 	
 	//LOAD
-	public Cliente load(int idCliente) {
-		return ClienteDao.getInstancia().LoadCliente(idCliente);
+	public Cliente loadId(int idCliente) {
+		return ClienteDao.getInstancia().LoadClienteId(idCliente);
+	}
+	
+	public Cliente loadCuit(String cuitCliente) {
+		return ClienteDao.getInstancia().LoadClienteCuit(cuitCliente);
 	}
 }

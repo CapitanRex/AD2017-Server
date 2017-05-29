@@ -4,9 +4,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import modelo.Cliente;
+import modelo.Color;
 import modelo.CondicionPago;
 import modelo.CuentaCorriente;
 import modelo.Empleado;
+import modelo.ItemPedido;
+import modelo.LotePrenda;
+import modelo.Pedido;
+import modelo.Prenda;
+import modelo.Talle;
 import modelo.Valor;
  
 public class HibernateUtil {
@@ -29,6 +35,14 @@ public class HibernateUtil {
         	config.addAnnotatedClass(CuentaCorriente.class);
         	config.addAnnotatedClass(CondicionPago.class);
         	config.addAnnotatedClass(Valor.class);
+        	config.addAnnotatedClass(Pedido.class);
+        	config.addAnnotatedClass(ItemPedido.class);
+        	config.addAnnotatedClass(Prenda.class);
+        	config.addAnnotatedClass(Color.class);
+        	config.addAnnotatedClass(Talle.class);
+        	config.addAnnotatedClass(LotePrenda.class);
+
+
 
         	config.addAnnotatedClass(Empleado.class);
         	

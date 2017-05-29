@@ -1,17 +1,11 @@
 package modelo;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
 
-public class ReservaPedido extends Reserva {
-	//SERIALIZABLE.
-	private static final long serialVersionUID = 1L;
+public class ReservaPedido  {
+
 	
 	//ATRIBUTOS.
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@Column(name = "pedidoId", columnDefinition = "SMALLINT")
+	
 	private Pedido pedido;
     
 	

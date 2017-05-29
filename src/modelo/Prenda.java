@@ -28,15 +28,6 @@ public class Prenda implements Serializable {
 	private Integer id;
 	@Column(name="descripcion", columnDefinition="VARCHAR")
     private String descripcion;
-	//MANY
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
-    private Set<Color> colores;
-    //MANY
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
-    private Set<Talle> talles;
-    //MANY ?
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<LotePrenda> lotes;
     @Column(name="estadoPrendaId", columnDefinition="SMALLINT")
@@ -46,18 +37,41 @@ public class Prenda implements Serializable {
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="modeloProduccionId", columnDefinition="SMALLINT")
     private ModeloProduccion modelo;
-    //MANY
-    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="prendaId", columnDefinition="SMALLINT")
-    private Set<Molde> molde;
     @Column(name="temporada", columnDefinition="VARCHAR")
     private String temporada;
     
-    //CONSTRUCTOR.
-    public Prenda() {
-    }
+    //CONSTRUCTOR VACIO.
+	public Prenda() {
+		super();
+		// TODO Auto-generated constructor stub
+	} 
       
-    //GETTERS & SETTERS.
+	//CONSTRUCTOR.
+    public Prenda(String descripcion, Set<LotePrenda> lotes, String estado,
+			Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
+		super();
+		this.descripcion = descripcion;
+		this.lotes = lotes;
+		this.estado = estado;
+		this.porcentajeGanancia = porcentajeGanancia;
+		this.modelo = modelo;
+		this.temporada = temporada;
+	}
+
+    //CONSTRUCTOR CON ID.
+	public Prenda(Integer id, String descripcion, Set<LotePrenda> lotes,
+			String estado, Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.lotes = lotes;
+		this.estado = estado;
+		this.porcentajeGanancia = porcentajeGanancia;
+		this.modelo = modelo;
+		this.temporada = temporada;
+	}
+
+	//GETTERS & SETTERS.
     public Integer getId() {
 		return id;
 	}
@@ -69,18 +83,6 @@ public class Prenda implements Serializable {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-	public Set<Color> getColores() {
-		return colores;
-	}
-	public void setColores(Set<Color> colores) {
-		this.colores = colores;
-	}
-	public Set<Talle> getTalles() {
-		return talles;
-	}
-	public void setTalles(Set<Talle> talles) {
-		this.talles = talles;
 	}
 	public Set<LotePrenda> getLotes() {
 		return lotes;
@@ -106,12 +108,7 @@ public class Prenda implements Serializable {
 	public void setModelo(ModeloProduccion modelo) {
 		this.modelo = modelo;
 	}
-	public Set<Molde> getMolde() {
-		return molde;
-	}
-	public void setMolde(Set<Molde> molde) {
-		this.molde = molde;
-	}
+
 	public String getTemporada() {
 		return temporada;
 	}

@@ -1,118 +1,134 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class OrdenProduccion {
-
-    private Integer id;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+@Entity
+@Table
+public class OrdenProduccion implements Serializable{
+	//SERIALIZABLE.
+	private static final long serialVersionUID = 1L;
+	
+	//ATRIBUTOS.
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", columnDefinition="SMALLINT")
+	private Integer id;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
     private Pedido pedido;
+	@Column(name="tipoId", columnDefinition="SMALLINT")
     private String tipo;
-    private Prenda prenda;
-    private Set<ItemMP> items;
-    private Date fechaCreacon;
+	//VER!!!!
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="")
+    private Set<ModeloProduccion> items;
+	@Column(name="fechaCreacion", columnDefinition="DATE")
+    private Date fechaCreacion;
+	@Column(name="fechaInicio", columnDefinition="DATE")
     private Date fechaInicio;
+	@Column(name="fechaFin", columnDefinition="DATE")
     private Date fechaFin;
+	@Column(name="estado", columnDefinition="SMALLINT")
     private String estado;
-    private Set<ReservaOP> reservas;
-    private Set<Articulo> articulos;
 
+    //CONSTRUCTOR VACIO.
     public OrdenProduccion() {
-    }    
+		super();
+		// TODO Auto-generated constructor stub
+	}
     
-    public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
+    //CONSTRUCTOR.
+	public OrdenProduccion(Pedido pedido, String tipo, Set<ItemMP> items, Date fechaCreacion, Date fechaInicio,
+			Date fechaFin, String estado) {
+		super();
 		this.pedido = pedido;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public Prenda getPrenda() {
-		return prenda;
-	}
-
-	public void setPrenda(Prenda prenda) {
-		this.prenda = prenda;
-	}
-
-	public Set<ItemMP> getItems() {
-		return items;
-	}
-
-	public void setItems(Set<ItemMP> items) {
 		this.items = items;
-	}
-
-	public Date getFechaCreacon() {
-		return fechaCreacon;
-	}
-
-	public void setFechaCreacon(Date fechaCreacon) {
-		this.fechaCreacon = fechaCreacon;
-	}
-
-	public Date getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(Date fechaInicio) {
+		this.fechaCreacion = fechaCreacion;
 		this.fechaInicio = fechaInicio;
-	}
-
-	public Date getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public Set<ReservaOP> getReservas() {
-		return reservas;
+	//CONSTRUCTOR CON ID.
+	public OrdenProduccion(Integer id, Pedido pedido, String tipo, Set<ItemMP> items, Date fechaCreacion,
+			Date fechaInicio, Date fechaFin, String estado) {
+		super();
+		this.id = id;
+		this.pedido = pedido;
+		this.tipo = tipo;
+		this.items = items;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.estado = estado;
 	}
 
-	public void setReservas(Set<ReservaOP> reservas) {
-		this.reservas = reservas;
+	//METODOS GETTER & SETTER.
+	public Integer getId() {
+		return id;
 	}
-
-	public Set<Articulo> getArticulos() {
-		return articulos;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-
-	public void setArticulos(Set<Articulo> articulos) {
-		this.articulos = articulos;
+	public Pedido getPedido() {
+		return pedido;
 	}
-
-	public Set<Articulo> generarArticulos() {
-        // TODO implement here
-        return null;
-    }
-
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public Set<ItemMP> getItems() {
+		return items;
+	}
+	public void setItems(Set<ItemMP> items) {
+		this.items = items;
+	}
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	//METODOS DE NEGOCIO.
     public Set<ItemInsumoMP> obtenerInsumos() {
         // TODO implement here
         return null;
