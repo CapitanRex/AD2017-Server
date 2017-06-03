@@ -86,9 +86,4 @@ public class SectorProduccion implements Serializable{
     public void notificar() {
         // TODO implement here
     }
-
-	public void procesarArticulo(Articulo articulo) {
-        // TODO implement here
-    }
-
 }
