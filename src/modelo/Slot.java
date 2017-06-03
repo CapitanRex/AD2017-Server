@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -29,11 +27,7 @@ public class Slot {
     private String tipo;
     //Esto es una interface
     private ArticuloAlmacenable item;
-    
-    //Para las reservas de Stock. Esto no lo encontre la relacion en la Base
-    private Set<Reserva> reservas;
-
-
+ 
     public Slot() {
     }
     
@@ -74,14 +68,6 @@ public class Slot {
 		this.cantidad = cantidad;
 	}
 
-	public Set<Reserva> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(Set<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-
 	public String getTipo() {
 		return tipo;
 	}
@@ -95,27 +81,11 @@ public class Slot {
         return null;
     }
 
-    public void cancelarReserva(Reserva reserva) {
-        // TODO implement here
-    }
-
-    public Integer generarReserva(Integer prendaId, Integer talleId, Integer coloIdr, Pedido pedido) {
-        // TODO implement here
-        return null;
-    }
 
     public Integer disponibilidad(Integer insumoId) {
         // TODO implement here
         return null;
     }
 
-    public Integer generarReserva(Integer insumoId, OrdenProduccion op) {
-        // TODO implement here
-        return null;
-    }
-
-    public void despacharReserva(Reserva reserva) {
-        // TODO implement here
-    }
 
 }
