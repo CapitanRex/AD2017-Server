@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,7 +41,7 @@ public class Articulo implements Serializable {
 	//NO ESTA EN LA BASE.
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="", columnDefinition="SMALLINT")
-    private Set<ItemSectorMP> sectoresPendientes;
+    private Set<ItemSectorMP> sectoresPendientes = new HashSet<ItemSectorMP>();
 	
    //CONSTRUCTOR VACIO.
 	public Articulo() {
