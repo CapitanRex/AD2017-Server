@@ -13,9 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table
 public class OrdenProduccion implements Serializable{
@@ -52,7 +52,7 @@ public class OrdenProduccion implements Serializable{
 	}
     
     //CONSTRUCTOR.
-	public OrdenProduccion(Pedido pedido, String tipo, Set<ItemMP> items, Date fechaCreacion, Date fechaInicio,
+	public OrdenProduccion(Pedido pedido, String tipo, Set<ModeloProduccion> items, Date fechaCreacion, Date fechaInicio,
 			Date fechaFin, String estado) {
 		super();
 		this.pedido = pedido;
@@ -65,7 +65,7 @@ public class OrdenProduccion implements Serializable{
 	}
 
 	//CONSTRUCTOR CON ID.
-	public OrdenProduccion(Integer id, Pedido pedido, String tipo, Set<ItemMP> items, Date fechaCreacion,
+	public OrdenProduccion(Integer id, Pedido pedido, String tipo, Set<ModeloProduccion> items, Date fechaCreacion,
 			Date fechaInicio, Date fechaFin, String estado) {
 		super();
 		this.id = id;
@@ -97,10 +97,10 @@ public class OrdenProduccion implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public Set<ItemMP> getItems() {
+	public Set<ModeloProduccion> getItems() {
 		return items;
 	}
-	public void setItems(Set<ItemMP> items) {
+	public void setItems(Set<ModeloProduccion> items) {
 		this.items = items;
 	}
 	public Date getFechaCreacion() {
