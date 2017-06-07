@@ -33,7 +33,7 @@ public class Remito implements Serializable {
 	@JoinColumn(name="clienteId")
     private Cliente cliente;
 	@Column(name="estadoId", columnDefinition="SMALLINT")
-    private String estado;
+    private Integer estado;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="remitoId", columnDefinition="SMALLINT")
     private Set<ItemRemito> itemsRemito = new HashSet<ItemRemito>();
@@ -47,7 +47,7 @@ public class Remito implements Serializable {
 	}
 
     //CONSTRUCTOR.
-	public Remito(Date fecha, Cliente cliente, String estado, Set<ItemRemito> itemsRemito, Pedido pedido) {
+	public Remito(Date fecha, Cliente cliente, Integer estado, Set<ItemRemito> itemsRemito, Pedido pedido) {
 		super();
 		this.fecha = fecha;
 		this.cliente = cliente;
@@ -57,7 +57,7 @@ public class Remito implements Serializable {
 	}
 
 	//CONSTRUCTOR CON ID.
-	public Remito(Integer id, Date fecha, Cliente cliente, String estado, Set<ItemRemito> itemsRemito, Pedido pedido) {
+	public Remito(Integer id, Date fecha, Cliente cliente, Integer estado, Set<ItemRemito> itemsRemito, Pedido pedido) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
@@ -86,10 +86,10 @@ public class Remito implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public String getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 	public Set<ItemRemito> getItemsRemito() {

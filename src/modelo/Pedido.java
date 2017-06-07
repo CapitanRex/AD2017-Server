@@ -40,7 +40,7 @@ public class Pedido implements Serializable {
 	@JoinColumn(name="pedidoId", columnDefinition = "SMALLINT")
     private Set<ItemPedido> itemPedido = new HashSet<ItemPedido>();
 	@Column(name="estadoId", columnDefinition="SMALLINT")
-    private String estado;
+    private Integer estado;
 
 	//CONSTRUCTOR VACIO.
     public Pedido() {
@@ -53,11 +53,11 @@ public class Pedido implements Serializable {
 		this.cliente = cliente;
 		this.fecha = new Date();
 		this.fechaEntrega = calcularFechaProbale(fecha);
-		this.estado = "PENDIENTE DE APROBACION";
+		this.estado = 1;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public Pedido(Integer id, Cliente cliente, Date fecha, Date fechaEntrega, String estado, Set<ItemPedido> itemPedido) {
+	public Pedido(Integer id, Cliente cliente, Date fecha, Date fechaEntrega, Integer estado, Set<ItemPedido> itemPedido) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
@@ -98,10 +98,10 @@ public class Pedido implements Serializable {
 	public void setItemPedido(Set<ItemPedido> itemPedido) {
 		this.itemPedido = itemPedido;
 	}
-	public String getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 	

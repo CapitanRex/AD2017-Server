@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -39,10 +42,13 @@ public class ItemMP implements Serializable{
     private Molde molde;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="itemMPId", columnDefinition="SMALLINT")
-    private Set<ItemInsumoMP> insumos;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="itemMPId", columnDefinition="SMALLINT")
-    private Set<ItemSectorMP> sectores;
+    private Set<ItemInsumoMP> insumos = new HashSet<ItemInsumoMP>();
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="itemMpId", columnDefinition="SMALLINT")
+    private Set<SectorProduccion> sectores = new HashSet<SectorProduccion>();
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="modeloProduccionId", columnDefinition="SMALLINT")
+    private ModeloProduccion modelo;
 
     //CONSTRUCTOR VACIO.
     public ItemMP() {
@@ -52,7 +58,7 @@ public class ItemMP implements Serializable{
 
     //CONSTRUCTOR.
 	public ItemMP(Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos,
-			Set<ItemSectorMP> sectores) {
+			Set<SectorProduccion> sectores, ModeloProduccion modelo) {
 		super();
 		this.cantidad = cantidad;
 		this.talle = talle;
@@ -60,11 +66,12 @@ public class ItemMP implements Serializable{
 		this.molde = molde;
 		this.insumos = insumos;
 		this.sectores = sectores;
+		this.modelo = modelo;
 	}
 
 	//CONSTRUCTOR CON ID.
 	public ItemMP(Integer id, Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos,
-			Set<ItemSectorMP> sectores) {
+			Set<SectorProduccion> sectores, ModeloProduccion modelo) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
@@ -73,6 +80,7 @@ public class ItemMP implements Serializable{
 		this.molde = molde;
 		this.insumos = insumos;
 		this.sectores = sectores;
+		this.modelo = modelo;
 	}
 	//GETTERS & SETTERS.
     public Integer getId() {
@@ -111,13 +119,19 @@ public class ItemMP implements Serializable{
 	public void setInsumos(Set<ItemInsumoMP> insumos) {
 		this.insumos = insumos;
 	}
-	public Set<ItemSectorMP> getSectores() {
+	public Set<SectorProduccion> getSectores() {
 		return sectores;
 	}
-	public void setSectores(Set<ItemSectorMP> sectores) {
+	public void setSectores(Set<SectorProduccion> sectores) {
 		this.sectores = sectores;
 	}
-	
+	public ModeloProduccion getModelo() {
+		return modelo;
+	}
+	public void setModelo(ModeloProduccion modelo) {
+		this.modelo = modelo;
+	}
+
 	//METODOS DE NEGOCIO.
 	public float calcularCostoProduccion() {
         // TODO implement here

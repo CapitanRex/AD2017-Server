@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,8 +29,8 @@ public class Insumo implements Serializable{
 	@Column(name="nombre", columnDefinition="VARCHAR")
     private String nombre;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="id", columnDefinition="SMALLINT")
-    private Set<LoteInsumo> lotes;
+	@JoinColumn(name="insumoId", columnDefinition="SMALLINT")
+    private Set<LoteInsumo> lotes = new HashSet<LoteInsumo>();
     @Column(name="puntoReposicion", columnDefinition="INT")
     private Integer puntoReposicion;
     @Column(name="compraMinima", columnDefinition="INT")
