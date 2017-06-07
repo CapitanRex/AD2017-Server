@@ -19,6 +19,7 @@ public class Ubicacion {
     public Ubicacion() {
     	super();
     }
+    
     //CONSTRUCTOR.
     public Ubicacion(String letraCalle,Integer nroBloque,Integer nroEstante,Integer nroPosicion) {
     	super();
@@ -28,6 +29,7 @@ public class Ubicacion {
     	this.nroPosicion = nroPosicion;
     }
 
+    
 	public String getLetraCalle() {
 		return letraCalle;
 	}

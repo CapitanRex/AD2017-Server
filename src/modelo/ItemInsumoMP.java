@@ -33,8 +33,9 @@ public class ItemInsumoMP implements Serializable{
 	@JoinColumn(name="insumoId", columnDefinition="SMALLINT")
     private Insumo insumo;
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="insumoId", columnDefinition="SMALLINT")
-	private ItemMP item;
+	@JoinColumn(name="itemMPId", columnDefinition="SMALLINT")
+	private ItemMP itemMP;
+
     
    //CONSTRUCTOR VACIO. 
     public ItemInsumoMP() {
@@ -43,22 +44,22 @@ public class ItemInsumoMP implements Serializable{
 	}
 
     //CONSTRUCTOR.
-	public ItemInsumoMP(Integer cantidad, Float desperdicio, Insumo insumo, ItemMP item) {
+	public ItemInsumoMP(Integer cantidad, Float desperdicio, Insumo insumo, ItemMP itemMP) {
 		super();
 		this.cantidad = cantidad;
 		this.desperdicio = desperdicio;
 		this.insumo = insumo;
-		this.item = item;
+		this.itemMP = itemMP;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public ItemInsumoMP(Integer id, Integer cantidad, Float desperdicio, Insumo insumo, ItemMP item) {
+	public ItemInsumoMP(Integer id, Integer cantidad, Float desperdicio, Insumo insumo, ItemMP itemMP) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
 		this.desperdicio = desperdicio;
 		this.insumo = insumo;
-		this.item = item;
+		this.itemMP = itemMP;
 	}
 
 	//METODOS GETTER & SETTER.
@@ -86,11 +87,11 @@ public class ItemInsumoMP implements Serializable{
 	public void setInsumo(Insumo insumo) {
 		this.insumo = insumo;
 	}
-	public ItemMP getItem() {
-		return item;
+	public ItemMP getItemMP() {
+		return itemMP;
 	}
-	public void setItem(ItemMP item) {
-		this.item = item;
+	public void setItemMP(ItemMP itemMP) {
+		this.itemMP = itemMP;
 	}
 
 	//METODOS DE NEGOCIO.

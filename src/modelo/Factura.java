@@ -16,11 +16,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table (name="factura")
 public class Factura implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
+	
 	//ATRIBUTOS.
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,8 +30,10 @@ public class Factura implements Serializable{
     private Integer id;
 	@Column(name="fecha", columnDefinition="DATE")
     private Date fecha;
+	//IMPLEMENTAR ONE TO ONE.
 	@Column(name="tipoId", columnDefinition="SMALLINT")
     private String tipo;
+	//IMPLEMENTAR ONE TO ONE.
 	@Column(name="estadoId", columnDefinition="SMALLINT")
     private String estado;
 	@Column(name="importe", columnDefinition="SMALLINT")

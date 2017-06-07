@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.sql.Time;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,6 +28,8 @@ public class LineaProduccion implements Serializable{
     @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="sectorProduccionId", columnDefinition="SMALLINT")
     private SectorProduccion sector;
+	@Column(name="id", columnDefinition="TIME")
+    private Time duracion;
     
     //CONSTRUCTOR VACIO.
     public LineaProduccion() {
@@ -35,16 +38,18 @@ public class LineaProduccion implements Serializable{
 	}
 
     //CONSTRUCTOR.
-	public LineaProduccion(SectorProduccion sector) {
+	public LineaProduccion(SectorProduccion sector, Time duracion) {
 		super();
 		this.sector = sector;
+		this.duracion = duracion;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public LineaProduccion(Integer id, SectorProduccion sector) {
+	public LineaProduccion(Integer id, SectorProduccion sector, Time duracion) {
 		super();
 		this.id = id;
 		this.sector = sector;
+		this.duracion = duracion;
 	}
 
 	//METODOS GETTER & SETTER.
@@ -59,5 +64,11 @@ public class LineaProduccion implements Serializable{
 	}
 	public void setSector(SectorProduccion sector) {
 		this.sector = sector;
+	}
+	public Time getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(Time duracion) {
+		this.duracion = duracion;
 	}
 }
