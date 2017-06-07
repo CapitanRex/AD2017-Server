@@ -5,11 +5,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import dao.ClienteDao;
 import modelo.Cliente;
+import modelo.Color;
 import modelo.Factura;
 import modelo.ItemPedido;
 import modelo.Pedido;
+import modelo.Prenda;
 import modelo.Remito;
+import modelo.Talle;
 
 public class AreaVentas {
 	//SERIALIZABLE
@@ -66,8 +70,14 @@ public class AreaVentas {
 	//METODOS DE NEGOCO.
 	
 	//CLIENTE.
+	//VERIFICAR CLIENTE.
 	private boolean verificarCliente(Cliente cliente){
 		return false;
+	}
+	
+	//BUSCAR CLIENTE
+	private Cliente buscarCliente(String cuitCliente) {
+		return ClienteDao.getInstancia().LoadClienteId(2);
 	}
 	
 	public void actualizarCtaCte(Cliente cliente) {
@@ -75,15 +85,23 @@ public class AreaVentas {
     }
 	
 	//PEDIDO.
-	public Integer generarPedido(Cliente cliente, Date fechaProbable, Set<ItemPedido> items) {
-		//VERIFICAR CLIENTE.
-		
-        Pedido pedido = new Pedido(cliente, fechaProbable);
-        pedido.setItemPedido(items);
+	public Integer generarPedido(String cuitCliente) {
+		//BUSCA CLIENTE.
+		Cliente cliente = buscarCliente(cuitCliente);
+		System.out.println(cliente.getCuit());
+		//GENERA PEDIDO.
+        Pedido pedido = new Pedido(cliente);
+        System.out.println(pedido.getCliente().getRazonSocial());
+        pedido.persist();
         return pedido.getId();
     }
+	
+	//ARMAR PEDIDO.
+	public void armarPedido(Integer cantidad, int idprenda, int idTalle, int idColor, Float precio, int idPedido){
+		
+	}
 
-    public void aprobarPedido(Integer nroPedido) {
+	public void aprobarPedido(Integer nroPedido) {
         // TODO implement here
     }
 

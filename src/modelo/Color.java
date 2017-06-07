@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="talle")
+@Table(name="color")
 public class Color implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;

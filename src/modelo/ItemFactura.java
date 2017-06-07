@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="itmeFactura")
+@Table(name="itemFactura")
 public class ItemFactura implements Serializable {
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class ItemFactura implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="SMALINT")
 	private Integer id;
-	@Column(name="cantidad", columnDefinition="INTEGER")
+	@Column(name="cantidad", columnDefinition="INT")
 	private Integer cantidad;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
