@@ -1,11 +1,19 @@
 package modelo;
 
 import java.util.Set;
+import javax.persistence.*;
 
+@Entity
+@Table(name="insumo")
 public class Insumo {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition="smallint")
     private Integer id;
     private String nombre;
+    @Transient
+//  @OneToMany(mappedBy="insumo")
     private Set<LoteInsumo> lotes;
     private Integer puntoReposicion;
     private Integer compraMinima;

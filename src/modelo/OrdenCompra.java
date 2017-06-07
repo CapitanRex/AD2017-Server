@@ -2,11 +2,21 @@ package modelo;
 
 import java.util.Set;
 
-public class OrdenCompra {
+import javax.persistence.*;
 
+@Entity
+@Table(name="ordenCompra")
+public class OrdenCompra {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition="smallint")
     private Integer id;
+	@Column(name="estadoId",columnDefinition="smallint")
     private String estado;
+    @ManyToOne
+    @JoinColumn(name="proveedorId")
     private Proveedor proveedor;
+    @OneToMany(mappedBy="ordenCompra")
     private Set<ItemOC> items;
 
     public OrdenCompra() {

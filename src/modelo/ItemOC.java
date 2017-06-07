@@ -1,9 +1,19 @@
 package modelo;
 
-public class ItemOC {
+import javax.persistence.*;
 
+@Entity
+@Table(name="itemOC")
+public class ItemOC {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition="smallint")
+	private Integer id;
     private Integer cantidad;
     private Float precio;
+    @ManyToOne
+    @JoinColumn(name="ordenCompraId")
+    private OrdenCompra ordenCompra;
    
     public ItemOC() {
     }

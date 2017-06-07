@@ -2,11 +2,22 @@ package modelo;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="itemProveedor")
 public class ItemProveedor {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition="smallint")
     private Integer id;
     private Float precio;
+    @Column(columnDefinition="time")
     private Date tiempoEntrega;
+    @ManyToOne
+    @JoinColumn(name="proveedorId")
+    private Proveedor proveedor;
     
     public ItemProveedor() {
     }
