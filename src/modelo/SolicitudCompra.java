@@ -1,13 +1,31 @@
 package modelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="solicitudCompra")
 public class SolicitudCompra {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition="smallint")
+	private Integer id;
     private Integer cantidad;
+    // TODO: queda comentado para que quien haga ordenproduccion lo habilite
+//  @ManyToOne
+//  @JoinColumn(name="ordenProduccionId")
+    @Transient
     private OrdenProduccion ordenProduccion;
-    private Integer id;
+    @Column(name="estadoId",columnDefinition="smallint")
     private String estado;
+    @ManyToOne
+    @JoinColumn(name="insumoId")
     private Insumo insumo;
+    @ManyToOne
+    @JoinColumn(name="proveedorId")
     private Proveedor proveedor;
+    @OneToOne
+    @JoinColumn(name="ordenCompraId")
     private OrdenCompra ordenCompra;
     
     public SolicitudCompra() {

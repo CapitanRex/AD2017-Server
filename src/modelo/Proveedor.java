@@ -3,13 +3,23 @@ package modelo;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="proveedor")
 public class Proveedor {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition="smallint")
     private Integer id;
+	@Column(columnDefinition="char")
     private String cuit;
     private String razonSocial;
+    @Column(name="estadoId", columnDefinition="smallint")
     private String estado;
     private String direccion;
+    @OneToMany(mappedBy="proveedor")
     private Set<ItemProveedor> items;
 
     public Proveedor() {
