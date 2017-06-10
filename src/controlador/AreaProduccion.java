@@ -36,5 +36,4 @@ public class AreaProduccion {
     public void novedadesAlmacen() {
     	// TODO implement here
     }
-
 }

@@ -27,7 +27,7 @@ public class Slot {
     private String tipo;
     //Esto es una interface
     private ArticuloAlmacenable item;
- 
+
     public Slot() {
     }
     
@@ -81,11 +81,8 @@ public class Slot {
         return null;
     }
 
-
     public Integer disponibilidad(Integer insumoId) {
         // TODO implement here
         return null;
     }
-
-
 }

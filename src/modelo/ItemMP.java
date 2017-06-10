@@ -65,9 +65,6 @@ public class ItemMP implements Serializable{
 		this.color = color;
 		this.molde = molde;
 		this.insumos = insumos;
-		this.sectores = sectores;
-		this.modelo = modelo;
-	}
 
 	//CONSTRUCTOR CON ID.
 	public ItemMP(Integer id, Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos,
@@ -131,6 +128,7 @@ public class ItemMP implements Serializable{
 	public void setModelo(ModeloProduccion modelo) {
 		this.modelo = modelo;
 	}
+
 
 	//METODOS DE NEGOCIO.
 	public float calcularCostoProduccion() {
