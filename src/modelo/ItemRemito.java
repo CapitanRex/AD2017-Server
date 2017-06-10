@@ -25,7 +25,7 @@ public class ItemRemito implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="SMALINT")
 	private Integer id;
-	@Column(name="cantidad", columnDefinition="INTEGER")
+	@Column(name="cantidad", columnDefinition="INT")
 	private Integer cantidad;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
@@ -96,5 +96,11 @@ public class ItemRemito implements Serializable {
 	}
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	public Remito getRemito() {
+		return remito;
+	}
+	public void setRemito(Remito remito) {
+		this.remito = remito;
 	}
 }

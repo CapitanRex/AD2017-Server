@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -29,7 +27,7 @@ public class Slot {
     private String tipo;
     //Esto es una interface
     private ArticuloAlmacenable item;
-    
+
     public Slot() {
     }
     
@@ -87,5 +85,4 @@ public class Slot {
         // TODO implement here
         return null;
     }
-
 }

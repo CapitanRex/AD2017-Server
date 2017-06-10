@@ -12,12 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "ordenProduccion")
 public class OrdenProduccion implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
@@ -30,20 +29,21 @@ public class OrdenProduccion implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
     private Pedido pedido;
-	@Column(name="tipoId", columnDefinition="SMALLINT")
-    private String tipo;
-	//VER!!!!
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="")
-    private Set<ModeloProduccion> items;
+	//ONE TO ONE.
+	@Column(name="tipoOrdenProduccionId", columnDefinition="SMALLINT")
+    private String tipo;//TIPO
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
+    private Prenda prenda;
 	@Column(name="fechaCreacion", columnDefinition="DATE")
     private Date fechaCreacion;
 	@Column(name="fechaInicio", columnDefinition="DATE")
     private Date fechaInicio;
 	@Column(name="fechaFin", columnDefinition="DATE")
     private Date fechaFin;
-	@Column(name="estado", columnDefinition="SMALLINT")
-    private String estado;
+	//ONE TO ONE.
+	@Column(name="estadoId", columnDefinition="SMALLINT")
+    private Integer estado;//ESTADO
 
     //CONSTRUCTOR VACIO.
     public OrdenProduccion() {
@@ -52,12 +52,12 @@ public class OrdenProduccion implements Serializable{
 	}
     
     //CONSTRUCTOR.
-	public OrdenProduccion(Pedido pedido, String tipo, Set<ModeloProduccion> items, Date fechaCreacion, Date fechaInicio,
-			Date fechaFin, String estado) {
+	public OrdenProduccion(Pedido pedido, String tipo, Prenda prenda, Set<ModeloProduccion> items, Date fechaCreacion, Date fechaInicio,
+			Date fechaFin, Integer estado) {
 		super();
 		this.pedido = pedido;
 		this.tipo = tipo;
-		this.items = items;
+		this.prenda = prenda;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
@@ -65,13 +65,13 @@ public class OrdenProduccion implements Serializable{
 	}
 
 	//CONSTRUCTOR CON ID.
-	public OrdenProduccion(Integer id, Pedido pedido, String tipo, Set<ModeloProduccion> items, Date fechaCreacion,
-			Date fechaInicio, Date fechaFin, String estado) {
+	public OrdenProduccion(Integer id, Pedido pedido, Prenda prenda, String tipo, Set<ModeloProduccion> items, Date fechaCreacion,
+			Date fechaInicio, Date fechaFin, Integer estado) {
 		super();
 		this.id = id;
 		this.pedido = pedido;
 		this.tipo = tipo;
-		this.items = items;
+		this.prenda = prenda;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
@@ -97,11 +97,11 @@ public class OrdenProduccion implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public Set<ModeloProduccion> getItems() {
-		return items;
+	public Prenda getPrenda() {
+		return prenda;
 	}
-	public void setItems(Set<ModeloProduccion> items) {
-		this.items = items;
+	public void setPrenda(Prenda prenda) {
+		this.prenda = prenda;
 	}
 	public Date getFechaCreacion() {
 		return fechaCreacion;
@@ -121,10 +121,10 @@ public class OrdenProduccion implements Serializable{
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public String getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 	

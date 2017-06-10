@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "itemInsumoMP")
+@Table(name = "itemInsumoOP")
 public class ItemInsumoOP implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
@@ -27,14 +27,16 @@ public class ItemInsumoOP implements Serializable{
 	private Integer id;
 	@Column(name="cantidad", columnDefinition="INT")
 	private Integer cantidad;
+	@Column(name="cantidadLista", columnDefinition="INT")
+	private Integer cantidadLista;
 	@Column(name="desperdicio", columnDefinition="FLOAT")
     private Float desperdicio;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="insumoId", columnDefinition="SMALLINT")
     private Insumo insumo;
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="insumoId", columnDefinition="SMALLINT")
-	private ItemMP item;
+	@JoinColumn(name="itemOPId", columnDefinition="SMALLINT")
+	private ItemOP itemOP;
     
    //CONSTRUCTOR VACIO. 
     public ItemInsumoOP() {
@@ -43,22 +45,24 @@ public class ItemInsumoOP implements Serializable{
 	}
 
     //CONSTRUCTOR.
-	public ItemInsumoOP(Integer cantidad, Float desperdicio, Insumo insumo, ItemMP item) {
+	public ItemInsumoOP(Integer cantidad, Integer cantidadLista, Float desperdicio, Insumo insumo, ItemOP itemOP ) {
 		super();
 		this.cantidad = cantidad;
+		this.cantidadLista = cantidadLista;
 		this.desperdicio = desperdicio;
 		this.insumo = insumo;
-		this.item = item;
+		this.itemOP = itemOP;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public ItemInsumoOP(Integer id, Integer cantidad, Float desperdicio, Insumo insumo, ItemMP item) {
+	public ItemInsumoOP(Integer id, Integer cantidad, Integer cantidadLista, Float desperdicio, Insumo insumo, ItemOP itemOP ) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
+		this.cantidadLista = cantidadLista;
 		this.desperdicio = desperdicio;
 		this.insumo = insumo;
-		this.item = item;
+		this.itemOP = itemOP;
 	}
 
 	//METODOS GETTER & SETTER.
@@ -74,6 +78,12 @@ public class ItemInsumoOP implements Serializable{
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
+	public Integer getCantidadLista() {
+		return cantidadLista;
+	}
+	public void setCantidadLista(Integer cantidadLista) {
+		this.cantidadLista = cantidadLista;
+	}
 	public Float getDesperdicio() {
 		return desperdicio;
 	}
@@ -86,11 +96,11 @@ public class ItemInsumoOP implements Serializable{
 	public void setInsumo(Insumo insumo) {
 		this.insumo = insumo;
 	}
-	public ItemMP getItem() {
-		return item;
+	public ItemOP getItemOP() {
+		return itemOP;
 	}
-	public void setItem(ItemMP item) {
-		this.item = item;
+	public void setItemOP(ItemOP itemOP) {
+		this.itemOP = itemOP;
 	}
 
 	//METODOS DE NEGOCIO.

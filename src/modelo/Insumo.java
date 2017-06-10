@@ -1,25 +1,17 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="insumo")
 public class Insumo implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
-	
+
 	//ATRIBUTOS.
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,8 +20,8 @@ public class Insumo implements Serializable{
 	@Column(name="nombre", columnDefinition="VARCHAR")
     private String nombre;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="id", columnDefinition="SMALLINT")
-    private Set<LoteInsumo> lotes;
+	@JoinColumn(name="insumoId", columnDefinition="SMALLINT")
+    private Set<LoteInsumo> lotes = new HashSet<LoteInsumo>();
     @Column(name="puntoReposicion", columnDefinition="INT")
     private Integer puntoReposicion;
     @Column(name="compraMinima", columnDefinition="INT")

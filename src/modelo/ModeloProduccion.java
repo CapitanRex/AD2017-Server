@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,10 +27,11 @@ public class ModeloProduccion implements Serializable {
 	@Column(name="id", columnDefinition="SMALLINT")
 	private Integer id;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@Column(name="descripcion", columnDefinition="SMALLINT")
+	@JoinColumn(name="modeloProduccionId", columnDefinition="SMALLINT")
     private Set<ItemMP> items = new HashSet<ItemMP>();
-	@Column(name="modeloProduccionId", columnDefinition="SMALLINT")
+	@Column(name="descripcion", columnDefinition="SMALLINT")
     private String descripcion;
+	
 
     //CONSTRUCTOR VACIO.
     public ModeloProduccion() {

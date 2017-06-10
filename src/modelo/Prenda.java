@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,10 +28,11 @@ public class Prenda implements Serializable {
 	private Integer id;
 	@Column(name="descripcion", columnDefinition="VARCHAR")
     private String descripcion;
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="prendaId", columnDefinition = "SMALLINT")
     private Set<LotePrenda> lotes;
-    @Column(name="estadoPrendaId", columnDefinition="SMALLINT")
-    private String estado;
+    @Column(name="estadoId", columnDefinition="SMALLINT")
+    private Integer estado;
     @Column(name="porcentajeGanancia", columnDefinition="FLOAT")
     private Float porcentajeGanancia;
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -47,7 +48,7 @@ public class Prenda implements Serializable {
 	} 
       
 	//CONSTRUCTOR.
-    public Prenda(String descripcion, Set<LotePrenda> lotes, String estado,
+    public Prenda(String descripcion, Set<LotePrenda> lotes, Integer estado,
 			Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
 		super();
 		this.descripcion = descripcion;
@@ -60,7 +61,7 @@ public class Prenda implements Serializable {
 
     //CONSTRUCTOR CON ID.
 	public Prenda(Integer id, String descripcion, Set<LotePrenda> lotes,
-			String estado, Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
+			Integer estado, Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -90,10 +91,10 @@ public class Prenda implements Serializable {
 	public void setLotes(Set<LotePrenda> lotes) {
 		this.lotes = lotes;
 	}
-	public String getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 	public Float getPorcentajeGanancia() {

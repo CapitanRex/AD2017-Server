@@ -24,8 +24,10 @@ public class ItemPedido implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="SMALINT")
 	private Integer id;
-	@Column(name="cantidad", columnDefinition="INTEGER")
+	@Column(name="cantidad", columnDefinition="INT")
 	private Integer cantidad;
+	@Column(name="cantidadLista", columnDefinition="INT")
+	private Integer cantidadLista;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
 	private Prenda prenda;
@@ -47,9 +49,10 @@ public class ItemPedido implements Serializable {
 	}
 
     //CONSTRUCTOR.
-	public ItemPedido(Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Pedido pedido) {
+	public ItemPedido(Integer cantidad, Integer cantidadLista, Prenda prenda, Talle talle, Color color, Float precio, Pedido pedido) {
 		super();
 		this.cantidad = cantidad;
+		this.cantidadLista = cantidadLista;
 		this.prenda = prenda;
 		this.talle = talle;
 		this.color = color;
@@ -58,10 +61,11 @@ public class ItemPedido implements Serializable {
 	}
 	
 	//CONSTRUCTOR CON ID.
-	public ItemPedido(Integer id, Integer cantidad, Prenda prenda, Talle talle, Color color, Float precio, Pedido pedido) {
+	public ItemPedido(Integer id, Integer cantidad, Integer cantidadLista, Prenda prenda, Talle talle, Color color, Float precio, Pedido pedido) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
+		this.cantidadLista = cantidadLista;
 		this.prenda = prenda;
 		this.talle = talle;
 		this.color = color;
@@ -81,6 +85,12 @@ public class ItemPedido implements Serializable {
 	}
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+	public Integer getCantidadLista() {
+		return cantidadLista;
+	}
+	public void setCantidadLista(Integer cantidadLista) {
+		this.cantidadLista = cantidadLista;
 	}
 	public Prenda getPrenda() {
 		return prenda;
@@ -106,7 +116,13 @@ public class ItemPedido implements Serializable {
 	public void setPrecio(Float precio) {
 		this.precio = precio;
 	}
-	
+	public Pedido getPedido() {
+		return pedido;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
 	//METODOS DE NEGOCIO.
 	public float getTotal() {
         // TODO implement here

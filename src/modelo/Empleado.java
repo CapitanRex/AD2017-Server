@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,10 @@ import dao.EmpleadoDao;
 
 @Entity
 @Table(name="empleado")
-public class Empleado {
+public class Empleado implements Serializable {
+	//SERIALIZABLE.
+	private static final long serialVersionUID = 1L;
+	
 	//ATRIBUTO.
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,15 +26,21 @@ public class Empleado {
 	private String nombre;
 	@Column(name="documento", columnDefinition="INT")
 	private Integer documento;
+	
+	//CONSTRUCTOR VACIO.
 	public Empleado() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	//CONSTRUCTOR.
 	public Empleado(String nombre, Integer documento) {
 		super();
 		this.nombre = nombre;
 		this.documento = documento;
 	}
+	
+	//CONSTRUCTOR CON ID.
 	public Empleado(Integer id, String nombre, Integer documento) {
 		super();
 		this.id = id;
@@ -37,6 +48,7 @@ public class Empleado {
 		this.documento = documento;
 	}
 	
+	//METODOS GETTER & SETTER.
 	public Integer getId() {
 		return id;
 	}

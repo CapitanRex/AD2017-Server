@@ -1,3 +1,4 @@
+
 package modelo;
 
 import java.io.Serializable;
@@ -11,12 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "itemMP")
+@Table(name = "itemOP")
 public class ItemOP implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
@@ -38,11 +40,11 @@ public class ItemOP implements Serializable{
 	@JoinColumn(name="moldeId", columnDefinition="SMALLINT")
     private Molde molde;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="itemMPId", columnDefinition="SMALLINT")
-    private Set<ItemInsumoMP> insumos;
-	//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-//	@JoinColumn(name="itemMPId", columnDefinition="SMALLINT")
-  //  private Set<ItemSectorMP> sectores;
+	@JoinColumn(name="itemOPId", columnDefinition="SMALLINT")
+    private Set<ItemInsumoOP> insumos;
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="itemOPId", columnDefinition="SMALLINT")
+    private Set<SectorProduccion> sectores;
 
     //CONSTRUCTOR VACIO.
     public ItemOP() {
@@ -51,17 +53,20 @@ public class ItemOP implements Serializable{
 	}
 
     //CONSTRUCTOR.
-	public ItemOP(Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos) {
+	public ItemOP(Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoOP> insumos,
+			Set<SectorProduccion> sectores) {
 		super();
 		this.cantidad = cantidad;
 		this.talle = talle;
 		this.color = color;
 		this.molde = molde;
 		this.insumos = insumos;
+		this.sectores = sectores;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public ItemOP(Integer id, Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos) {
+	public ItemOP(Integer id, Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoOP> insumos,
+			Set<SectorProduccion> sectores) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;
@@ -69,6 +74,7 @@ public class ItemOP implements Serializable{
 		this.color = color;
 		this.molde = molde;
 		this.insumos = insumos;
+		this.sectores = sectores;
 	}
 	//GETTERS & SETTERS.
     public Integer getId() {
@@ -101,17 +107,17 @@ public class ItemOP implements Serializable{
 	public void setMolde(Molde molde) {
 		this.molde = molde;
 	}
-	public Set<ItemInsumoMP> getInsumos() {
+	public Set<ItemInsumoOP> getInsumos() {
 		return insumos;
 	}
-	public void setInsumos(Set<ItemInsumoMP> insumos) {
+	public void setInsumos(Set<ItemInsumoOP> insumos) {
 		this.insumos = insumos;
 	}
-	
-	//METODOS DE NEGOCIO.
-	public float calcularCostoProduccion() {
-        // TODO implement here
-        return 0.0f;
+	public Set<SectorProduccion> getSectores() {
+		return sectores;
 	}
+	public void setSectores(Set<SectorProduccion> sectores) {
+		this.sectores = sectores;
+	}
+	
 }
-

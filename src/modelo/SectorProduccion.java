@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,7 +34,15 @@ public class SectorProduccion implements Serializable{
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="sectorProduccionId", columnDefinition="SMALLINT")
     private Set<LineaProduccion> lineas = new HashSet<LineaProduccion>();
-
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="sectorProduccionId", columnDefinition="SMALLINT")
+	private Set<ItemMP> itemMP = new HashSet<ItemMP>();
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="sectorProduccionId", columnDefinition="SMALLINT")
+	private Set<ItemOP> itemOP = new HashSet<ItemOP>();
+	
+	//OJO CON LOS CONSTRUCTORES Y LA REFERENCIA A LOS ITEM MP Y OP!!!!!!!!!
+	
     //CONSTRUCTOR VACIO.
     public SectorProduccion() {
 		super();
@@ -81,8 +90,20 @@ public class SectorProduccion implements Serializable{
 	public void setLineas(Set<LineaProduccion> lineas) {
 		this.lineas = lineas;
 	}
-	
-    //METODOS DE NEGOCIO.
+    public Set<ItemMP> getItemMP() {
+		return itemMP;
+	}
+	public void setItemMP(Set<ItemMP> itemMP) {
+		this.itemMP = itemMP;
+	}
+	public Set<ItemOP> getItemOP() {
+		return itemOP;
+	}
+	public void setItemOP(Set<ItemOP> itemOP) {
+		this.itemOP = itemOP;
+	}
+
+	//METODOS DE NEGOCIO.
     public void notificar() {
         // TODO implement here
     }

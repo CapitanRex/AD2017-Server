@@ -32,6 +32,7 @@ public class Cliente implements Serializable{
 	private String razonSocial;
 	@Column(name="direccion", columnDefinition="VARCHAR")
 	private String direccion;
+	//IMPLEMENTAR EL ONE TO ONE.
 	@Column(name="estadoId", columnDefinition="SMALLINT")
 	private Integer estado;
 	@OneToOne (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
@@ -52,9 +53,9 @@ public class Cliente implements Serializable{
 		this.cuit = cuit;
 		this.razonSocial = razonSocial;
 		this.direccion = direccion;
-		this.estado = 1;
-		this.cuenta = new CuentaCorriente(0, 1000);
-		this.condicion = new CondicionPago("Contado");
+		this.estado = 1; //MODIFICAR
+		this.cuenta = new CuentaCorriente(0, 1000);//MODIFICAR
+		this.condicion = new CondicionPago("Contado");//MOFICIAR
 	}
 
 	//CONSTRUCTOR CON ID.
@@ -123,11 +124,12 @@ public class Cliente implements Serializable{
 		ClienteDao.getInstancia().UpdateCliente(cliente);
 	}
 	
-	//LOAD
+	//LOAD CON ID.
 	public Cliente loadId(int idCliente) {
 		return ClienteDao.getInstancia().LoadClienteId(idCliente);
 	}
 	
+	//LOAD CON CUIT.
 	public Cliente loadCuit(String cuitCliente) {
 		return ClienteDao.getInstancia().LoadClienteCuit(cuitCliente);
 	}

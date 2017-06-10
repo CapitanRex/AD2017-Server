@@ -20,8 +20,8 @@ public class Molde implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="SMALLINT")
 	private Integer id;
-	@Column(name="descripcion", columnDefinition="SMALLINT")
-    private String descripcion;
+	@Column(name="nombre", columnDefinition="VARCHAR")
+    private String nombre;
 	
 	//CONSTRUCTOR VACIO.
 	public Molde() {
@@ -30,16 +30,16 @@ public class Molde implements Serializable{
 	}
 
 	//CONSTRUCTOR.
-	public Molde(String descripcion) {
+	public Molde(String nombre) {
 		super();
-		this.descripcion = descripcion;
+		this.nombre = nombre;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public Molde(Integer id, String descripcion) {
+	public Molde(Integer id, String nombre) {
 		super();
 		this.id = id;
-		this.descripcion = descripcion;
+		this.nombre = nombre;
 	}
 
 	//METODOS GETTER & SETTER.
@@ -49,10 +49,10 @@ public class Molde implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setNombren(String nombre) {
+		this.nombre = nombre;
 	}
 }
