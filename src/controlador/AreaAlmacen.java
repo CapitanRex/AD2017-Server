@@ -1,41 +1,35 @@
 package controlador;
 
 import java.util.Set;
-
-import modelo.ArticuloAlmacenable;
 import modelo.Empleado;
+import modelo.ItemLotePrenda;
+import modelo.LoteInsumo;
 import modelo.LotePrenda;
-import modelo.Movimiento;
 import modelo.OrdenCompra;
 import modelo.OrdenProduccion;
 import modelo.Pedido;
 import modelo.Slot;
 
 public class AreaAlmacen {
-
+	
+	//ATRIBUTOS
     private Set<Slot> slots;
-    private Set<Movimiento> movimientos;
+    //private Set<Movimiento> movimientos; //Movimientos estan en el Slot
     private Set<Empleado> empleados;
     private Set<OrdenCompra> ordenesCompra;
     private AreaCompras areaCompras;
 
+    //CONSTRUCTOR
 	public AreaAlmacen() {
     }
 	
+	//GETTERS AND SETTERS
     public Set<Slot> getSlots() {
 		return slots;
 	}
 
 	public void setSlots(Set<Slot> slots) {
 		this.slots = slots;
-	}
-
-	public Set<Movimiento> getMovimientos() {
-		return movimientos;
-	}
-
-	public void setMovimientos(Set<Movimiento> movimientos) {
-		this.movimientos = movimientos;
 	}
 
 	public Set<Empleado> getEmpleados() {
@@ -62,11 +56,11 @@ public class AreaAlmacen {
 		this.areaCompras = areaCompras;
 	}
    
-    public void agregarItemSlot(ArticuloAlmacenable item) {
+    public void agregarItemSlot(LoteInsumo item) {
         // TODO implement here
     }
 
-    public void removerItemSlot(ArticuloAlmacenable item) {
+    public void removerItemSlot(ItemLotePrenda item) {
         // TODO implement here
     }
 

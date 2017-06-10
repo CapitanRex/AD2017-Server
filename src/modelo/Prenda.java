@@ -28,11 +28,16 @@ public class Prenda implements Serializable {
 	private Integer id;
 	@Column(name="descripcion", columnDefinition="VARCHAR")
     private String descripcion;
+	
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Set<LotePrenda> lotes;
-    @Column(name="estadoPrendaId", columnDefinition="SMALLINT")
-    private String estado;
-    @Column(name="porcentajeGanancia", columnDefinition="FLOAT")
+    
+	//tabla estado (revisar)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="estadoId", columnDefinition="SMALLINT")
+	private Estado estado;
+    
+	@Column(name="porcentajeGanancia", columnDefinition="FLOAT")
     private Float porcentajeGanancia;
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="modeloProduccionId", columnDefinition="SMALLINT")
@@ -47,7 +52,7 @@ public class Prenda implements Serializable {
 	} 
       
 	//CONSTRUCTOR.
-    public Prenda(String descripcion, Set<LotePrenda> lotes, String estado,
+    public Prenda(String descripcion, Set<LotePrenda> lotes, Estado estado,
 			Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
 		super();
 		this.descripcion = descripcion;
@@ -60,7 +65,7 @@ public class Prenda implements Serializable {
 
     //CONSTRUCTOR CON ID.
 	public Prenda(Integer id, String descripcion, Set<LotePrenda> lotes,
-			String estado, Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
+			Estado estado, Float porcentajeGanancia, ModeloProduccion modelo, String temporada) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -90,10 +95,10 @@ public class Prenda implements Serializable {
 	public void setLotes(Set<LotePrenda> lotes) {
 		this.lotes = lotes;
 	}
-	public String getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 	public Float getPorcentajeGanancia() {

@@ -26,9 +26,11 @@ public class LotePrenda implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition = "SMALLINT")
     private Integer id;
+	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="prendaId", columnDefinition="SMALLINT")
     private Prenda prenda;
+	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="lotePrendaId", columnDefinition="SMALLINT")
     private Set<ItemLotePrenda> items;

@@ -1,47 +1,68 @@
 package modelo;
 
-import java.util.Set;
-
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table (name="slot")
-public class Slot {
-    
-    @Id//En la base esta definido como integer, cuando si queremos usar el codigo de la ubicacion deberia ser String
+public class Slot implements Serializable{
+	//SERIALIZABLE.
+		private static final long serialVersionUID = 1L;
+    //Atributos:
+    @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="SMALLINT")
     private Integer id;
-    
-    @Embedded
-    private Ubicacion ubicacion;//La definicion de la base esta en la clase embebida Ubicacion
-    @Column(name="estadoSlotId", columnDefinition="SMALLINT")
-    private String estado;
-    @Column(name="cantidad", columnDefinition="SMALLINT")
-    private Integer cantidad;
-    @Column(name="tipoId", columnDefinition="SMALLINT")
-    private String tipo;
-    //Esto es una interface
-    private ArticuloAlmacenable item;
-    
-    //Para las reservas de Stock. Esto no lo encontre la relacion en la Base
-    private Set<Reserva> reservas;
+    //-UBICACION:
+	@Column (name="letraCalle",nullable = false, length = 2, columnDefinition="VARCHAR")
+    private String letraCalle;
+	@Column(name="nroBloque", columnDefinition="SMALLINT")
+    private Integer nroBloque;
+	@Column(name="nroEstante", columnDefinition="SMALLINT")
+    private Integer nroEstante;
+	@Column(name="nroPosicion", columnDefinition="SMALLINT")
+    private Integer nroPosicion;
+	//-RELACIONES:
+	
+	//tabla estado (22:slot_vacio,23:slot_lleno)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="estadoId", columnDefinition="SMALLINT")
+    private Estado estado;
+   
+	//tabla tipoSlot (1:prenda, 2:ainsumo)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="tipoSlotId", columnDefinition="SMALLINT")
+    private TipoSlot tipo;
+	
+    //tabla loteInsumo (relacion uno a uno) 
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="loteInsumoId", columnDefinition="SMALLINT")
+	private LoteInsumo loteInsumo;
+	
+    //tabla itemLotePrendaId (relacion uno a uno) 
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="itemLotePrendaId", columnDefinition="SMALLINT")
+	private ItemLotePrenda itemLotePrenda;
+	
+    //tabla movimientos (un Slot tiene muchos Movimientos) ----NO ENCONTRE LA RELACION EN LA BD !!
+	//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@JoinColumn(name="x", columnDefinition="SMALLINT")
+    //private Set<Movimiento> movimientos;
 
-
+	//CONSTRUCTOR
     public Slot() {
     }
     
-    public boolean estaLleno() {
-        // TODO implement here
-        return false;
-    }
-
+  
     public Integer getId() {
 		return id;
 	}
@@ -50,72 +71,67 @@ public class Slot {
 		this.id = id;
 	}
 
-	public String getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 
-	public ArticuloAlmacenable getItem() {
-		return item;
-	}
-
-	public void setItem(ArticuloAlmacenable item) {
-		this.item = item;
-	}
-
-	public Integer getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
-	}
-
-	public Set<Reserva> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(Set<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-
-	public String getTipo() {
+	public TipoSlot getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoSlot tipo) {
 		this.tipo = tipo;
 	}
 
+	public String getLetraCalle() {
+		return letraCalle;
+	}
+
+	public void setLetraCalle(String letraCalle) {
+		this.letraCalle = letraCalle;
+	}
+
+	public Integer getNroBloque() {
+		return nroBloque;
+	}
+
+	public void setNroBloque(Integer nroBloque) {
+		this.nroBloque = nroBloque;
+	}
+
+	public Integer getNroEstante() {
+		return nroEstante;
+	}
+
+	public void setNroEstante(Integer nroEstante) {
+		this.nroEstante = nroEstante;
+	}
+
+	public Integer getNroPosicion() {
+		return nroPosicion;
+	}
+
+	public void setNroPosicion(Integer nroPosicion) {
+		this.nroPosicion = nroPosicion;
+	}
+//METODOS NEGOCIO:
+//------------------
+	public boolean estaLleno() {
+	        // TODO implement here
+	        return false;
+	    }
 	public Integer disponibilidad(Integer prendaId, Integer talleId, Integer coloIdr) {
         // TODO implement here
         return null;
     }
+	 public Integer disponibilidad(Integer insumoId) {
+	        // TODO implement here
+	        return null;
+	    }
 
-    public void cancelarReserva(Reserva reserva) {
-        // TODO implement here
-    }
-
-    public Integer generarReserva(Integer prendaId, Integer talleId, Integer coloIdr, Pedido pedido) {
-        // TODO implement here
-        return null;
-    }
-
-    public Integer disponibilidad(Integer insumoId) {
-        // TODO implement here
-        return null;
-    }
-
-    public Integer generarReserva(Integer insumoId, OrdenProduccion op) {
-        // TODO implement here
-        return null;
-    }
-
-    public void despacharReserva(Reserva reserva) {
-        // TODO implement here
-    }
 
 }
