@@ -25,9 +25,9 @@ public class LineaProduccion implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", columnDefinition="SMALLINT")
 	private Integer id;
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="articuloId")
-    private Articulo articulo;
+//    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+//    @JoinColumn(name="articuloId")
+//    private Articulo articulo;
     @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name="sectorProduccionId", columnDefinition="SMALLINT")
     private SectorProduccion sector;
@@ -39,18 +39,16 @@ public class LineaProduccion implements Serializable{
 	}
 
     //CONSTRUCTOR.
-	public LineaProduccion(SectorProduccion sector, Articulo articulo) {
+	public LineaProduccion(SectorProduccion sector) {
 		super();
 		this.sector = sector;
-		this.articulo = articulo;
 	}
 
 	//CONSTRUCTOR CON ID.
-	public LineaProduccion(Integer id, SectorProduccion sector, Articulo articulo) {
+	public LineaProduccion(Integer id, SectorProduccion sector) {
 		super();
 		this.id = id;
 		this.sector = sector;
-		this.articulo = articulo;
 	}
 
 	//METODOS GETTER & SETTER.
@@ -66,15 +64,9 @@ public class LineaProduccion implements Serializable{
 	public void setSector(SectorProduccion sector) {
 		this.sector = sector;
 	}
-	public Articulo getArticulo() {
-		return articulo;
-	}
-	public void setArticulo(Articulo articulo) {
-		this.articulo = articulo;
-	}
 	
 	//METODOS DE NEGOCIO.
-	public void procesarArticulo(Articulo articulo) {
+	//public void procesarArticulo(Articulo articulo) {
         // TODO implement here
-    }
+    //}
 }

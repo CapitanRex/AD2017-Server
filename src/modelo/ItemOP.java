@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "itemMP")
-public class ItemMP implements Serializable{
+public class ItemOP implements Serializable{
 	//SERIALIZABLE.
 	private static final long serialVersionUID = 1L;
 	
@@ -45,13 +45,13 @@ public class ItemMP implements Serializable{
   //  private Set<ItemSectorMP> sectores;
 
     //CONSTRUCTOR VACIO.
-    public ItemMP() {
+    public ItemOP() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
     //CONSTRUCTOR.
-	public ItemMP(Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos) {
+	public ItemOP(Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos) {
 		super();
 		this.cantidad = cantidad;
 		this.talle = talle;
@@ -61,7 +61,7 @@ public class ItemMP implements Serializable{
 	}
 
 	//CONSTRUCTOR CON ID.
-	public ItemMP(Integer id, Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos) {
+	public ItemOP(Integer id, Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos) {
 		super();
 		this.id = id;
 		this.cantidad = cantidad;

@@ -2,7 +2,6 @@ package controlador;
 
 import java.util.Set;
 
-import modelo.Articulo;
 import modelo.OrdenProduccion;
 import modelo.SectorProduccion;
 
@@ -10,7 +9,6 @@ public class AreaProduccion {
 
     private Set<SectorProduccion> sectores;
     private Set<OrdenProduccion> ordeneProduccion;
-    private Set<Articulo> prendas;
 	
     public AreaProduccion() {
     }
@@ -31,14 +29,6 @@ public class AreaProduccion {
 		this.ordeneProduccion = ordeneProduccion;
 	}
 
-	public Set<Articulo> getPrendas() {
-		return prendas;
-	}
-
-	public void setPrendas(Set<Articulo> prendas) {
-		this.prendas = prendas;
-	}
-
 	public void procesarOP(OrdenProduccion op) {
         // TODO implement here
     }
@@ -46,9 +36,4 @@ public class AreaProduccion {
     public void novedadesAlmacen() {
     	// TODO implement here
     }
-
-    public void novedadesProduccion(Articulo articulo) {
-        // TODO implement here
-    }
-
 }
