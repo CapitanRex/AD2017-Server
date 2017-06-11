@@ -28,6 +28,8 @@ public class Movimiento {
     
     private Slot slot;//relacion uno a uno
     
+    private Integer cantidad;
+    
     private ArticuloAlmacenable item; 
 
     

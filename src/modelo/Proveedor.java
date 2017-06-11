@@ -18,6 +18,8 @@ public class Proveedor {
     private String razonSocial;
     @Column(name="estadoId", columnDefinition="smallint")
     private String estado;
+    //18	proveedor_inactivo
+    //19	proveedor_activo
     private String direccion;
     @OneToMany(mappedBy="proveedor")
     private Set<ItemProveedor> items;
