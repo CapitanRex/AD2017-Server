@@ -11,6 +11,7 @@ public class ItemOC {
 	private Integer id;
     private Integer cantidad;
     private Float precio;
+    private Insumo insumo;
     @ManyToOne
     @JoinColumn(name="ordenCompraId")
     private OrdenCompra ordenCompra;

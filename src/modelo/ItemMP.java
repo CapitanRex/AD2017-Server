@@ -44,7 +44,7 @@ public class ItemMP implements Serializable{
 	@JoinColumn(name="itemMPId", columnDefinition="SMALLINT")
     private Set<ItemInsumoMP> insumos = new HashSet<ItemInsumoMP>();
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="itemMpId", columnDefinition="SMALLINT")
+	@JoinColumn(name="itemMPId", columnDefinition="SMALLINT")
     private Set<SectorProduccion> sectores = new HashSet<SectorProduccion>();
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="modeloProduccionId", columnDefinition="SMALLINT")
@@ -65,7 +65,8 @@ public class ItemMP implements Serializable{
 		this.color = color;
 		this.molde = molde;
 		this.insumos = insumos;
-
+	}
+		
 	//CONSTRUCTOR CON ID.
 	public ItemMP(Integer id, Integer cantidad, Talle talle, Color color, Molde molde, Set<ItemInsumoMP> insumos,
 			Set<SectorProduccion> sectores, ModeloProduccion modelo) {

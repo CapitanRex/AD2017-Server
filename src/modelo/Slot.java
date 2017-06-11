@@ -21,6 +21,8 @@ public class Slot {
     private Ubicacion ubicacion;//La definicion de la base esta en la clase embebida Ubicacion
     @Column(name="estadoSlotId", columnDefinition="SMALLINT")
     private String estado;
+    //18	proveedor_inactivo
+    //19	proveedor_activo
     @Column(name="cantidad", columnDefinition="SMALLINT")
     private Integer cantidad;
     @Column(name="tipoId", columnDefinition="SMALLINT")

@@ -19,6 +19,8 @@ public class OrdenCompra implements Serializable {
 	private Integer id;
 	@Column(name="estadoId", columnDefinition="SMALLINT")
     private Integer estado; //ESTADO
+	//5	orden_compra_pendiente
+	//6	orden_compra_completa
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="proveedorId", columnDefinition="SMALLINT")
     private Proveedor proveedor;

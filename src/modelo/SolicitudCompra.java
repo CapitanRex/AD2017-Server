@@ -20,6 +20,9 @@ public class SolicitudCompra {
     private String estado;
     @ManyToOne
     @JoinColumn(name="insumoId")
+    //24	solicitud_compra_pendiente
+    //25	solicitud_compra_emitida
+    //26	solicitud_compra_recibida
     private Insumo insumo;
     @ManyToOne
     @JoinColumn(name="proveedorId")
