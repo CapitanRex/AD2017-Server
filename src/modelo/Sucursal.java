@@ -16,10 +16,6 @@ public class Sucursal {
     private Set<Cliente> clientes;
     private AreaVentas areaVentas;
 
-    public void altaCliente() {
-        // TODO implement here
-    }
-
     public Integer getId() {
 		return id;
 	}
@@ -67,6 +63,10 @@ public class Sucursal {
 	public void setAreaVentas(AreaVentas areaVentas) {
 		this.areaVentas = areaVentas;
 	}
+
+    public void altaCliente() {
+        // TODO implement here
+    }
 
 	public void modificarCliente() {
         // TODO implement here

@@ -41,7 +41,13 @@ public class Pedido implements Serializable {
     private Set<ItemPedido> itemPedido = new HashSet<ItemPedido>();
 	@Column(name="estadoId", columnDefinition="SMALLINT")
     private Integer estado;
-
+/*
+	10	pedido_pendiente
+	11	pedido_en_proceso
+	12	pedido_completo
+	13	pedido_entregado
+	14	pedido_cancelado
+*/
 	//CONSTRUCTOR VACIO.
     public Pedido() {
 		super();

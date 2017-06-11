@@ -34,6 +34,8 @@ public class Remito implements Serializable {
     private Cliente cliente;
 	@Column(name="estadoId", columnDefinition="SMALLINT")
     private Integer estado;
+	//20	remito_emitido
+	//21	remito_entregado
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="remitoId", columnDefinition="SMALLINT")
     private Set<ItemRemito> itemsRemito = new HashSet<ItemRemito>();

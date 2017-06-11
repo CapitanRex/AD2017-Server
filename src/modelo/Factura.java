@@ -36,6 +36,8 @@ public class Factura implements Serializable{
 	//IMPLEMENTAR ONE TO ONE.
 	@Column(name="estadoId", columnDefinition="SMALLINT")
     private String estado;
+	//3	factura_impaga
+	//4	factura_paga
 	@Column(name="importe", columnDefinition="SMALLINT")
 	private Float importe;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)

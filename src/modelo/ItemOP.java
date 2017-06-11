@@ -45,7 +45,15 @@ public class ItemOP implements Serializable{
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="itemOPId", columnDefinition="SMALLINT")
     private Set<SectorProduccion> sectores;
-
+	@Column(name = "estadoId", columnDefinition="SMALLINT")
+	private String estado;
+	/*
+	27	item_orden_produccion_pendiente
+	28	item_orden_produccion_en_proceso
+	29	item_orden_produccion_completo 
+	*/
+	
+	
     //CONSTRUCTOR VACIO.
     public ItemOP() {
 		super();

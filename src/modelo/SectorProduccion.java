@@ -41,6 +41,9 @@ public class SectorProduccion implements Serializable{
 	@JoinColumn(name="sectorProduccionId", columnDefinition="SMALLINT")
 	private Set<ItemOP> itemOP = new HashSet<ItemOP>();
 	
+	private Set<ItemOP> itemsEnCola;
+	
+	
 	//OJO CON LOS CONSTRUCTORES Y LA REFERENCIA A LOS ITEM MP Y OP!!!!!!!!!
 	
     //CONSTRUCTOR VACIO.
@@ -106,5 +109,9 @@ public class SectorProduccion implements Serializable{
 	//METODOS DE NEGOCIO.
     public void notificar() {
         // TODO implement here
+    }
+    
+    public void procesar(ItemOP item){
+    	// TODO
     }
 }
