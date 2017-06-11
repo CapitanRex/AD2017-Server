@@ -33,6 +33,10 @@ public class Prenda implements Serializable {
     private Set<LotePrenda> lotes;
     @Column(name="estadoId", columnDefinition="SMALLINT")
     private Integer estado;
+    //15	prenda_inactiva
+    //16	prenda_activa
+    //17	prenda_discontinua
+    
     @Column(name="porcentajeGanancia", columnDefinition="FLOAT")
     private Float porcentajeGanancia;
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)

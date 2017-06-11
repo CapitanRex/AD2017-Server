@@ -35,6 +35,8 @@ public class Cliente implements Serializable{
 	//IMPLEMENTAR EL ONE TO ONE.
 	@Column(name="estadoId", columnDefinition="SMALLINT")
 	private Integer estado;
+	//1	cliente_inactivo
+	//2	cliente_activo
 	@OneToOne (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="cuentaCorrienteId", columnDefinition="SMALLINT")
 	private CuentaCorriente cuenta;

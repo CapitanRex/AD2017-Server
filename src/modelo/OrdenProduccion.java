@@ -31,7 +31,7 @@ public class OrdenProduccion implements Serializable{
     private Pedido pedido;
 	//ONE TO ONE.
 	@Column(name="tipoOrdenProduccionId", columnDefinition="SMALLINT")
-    private String tipo;//TIPO
+    private String tipo;//TIPO - hay una tabla tipoOrdenProduccion
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="pedidoId", columnDefinition="SMALLINT")
     private Prenda prenda;
@@ -43,8 +43,13 @@ public class OrdenProduccion implements Serializable{
     private Date fechaFin;
 	//ONE TO ONE.
 	@Column(name="estadoId", columnDefinition="SMALLINT")
-    private Integer estado;//ESTADO
-
+    private Integer estado;//ESTADO - hay una tabla con los estados
+	/*
+	7	orden_produccion_pendiente
+	8	orden_produccion_en_proceso
+	9	orden_produccion_completa
+	*/
+	
     //CONSTRUCTOR VACIO.
     public OrdenProduccion() {
 		super();

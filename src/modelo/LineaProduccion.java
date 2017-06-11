@@ -71,4 +71,8 @@ public class LineaProduccion implements Serializable{
 	public void setDuracion(Time duracion) {
 		this.duracion = duracion;
 	}
+	
+	public void procesar(ItemOP item){
+		//implementar
+	}
 }
